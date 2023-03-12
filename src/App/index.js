@@ -2,6 +2,9 @@ import "./index.css"
 import AlbumCard from "./AlbumCard"
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from "react-bootstrap/Container";
 
 class App extends React.Component {
     constructor(props) {
@@ -1048,13 +1051,18 @@ class App extends React.Component {
             ]
         };
     }
+    //                    
+
     render() {
         return (
             <div className="app">
-                {this.state.albums.map(album => (<AlbumCard album={album} />))}
-
-                <AlbumCard album={this.state.albums[0]} />)
-
+                <Row xs={1} md={3} className="card-grid">
+                    {this.state.albums.map(album => (
+                        <Col className="card-container">
+                            <AlbumCard album={album} />
+                        </Col>)
+                    )}
+                </Row>
             </div>)
     }
 }
