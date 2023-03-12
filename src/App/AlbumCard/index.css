@@ -1,0 +1,144 @@
+@media (max-width: 767px) {
+    .album-card {
+        width: 95%;
+        height: 40%;
+        border: 2px solid
+    }
+
+    .card-top {
+        height: 65%;
+        width: 100%;
+    }
+
+    .card-top-column {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+        width: 50%;
+        overflow: hidden;
+    }
+
+    .album-cover-image {
+        margin: auto;
+        width: 60%;
+        height: auto;
+    }
+
+    .card-bottom {
+        display: flex;
+        flex-direction: column;
+        height: 35%;
+        width: 100%;
+    }
+
+
+
+    .album-title-text {
+        font-size: min(1.5em, 4vw);
+
+    }
+
+}
+
+@media (min-width: 767px) {
+    .album-card {
+        width: 33%;
+        height: 40%;
+    }
+
+    .card-top {
+        height: 65%;
+        width: 100%;
+    }
+
+    .card-top-column {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+        width: 50%;
+    }
+
+    .album-cover-image {
+        margin: auto;
+        width: 80%;
+        height: auto;
+    }
+
+    .card-bottom {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 35%;
+        width: 100%;
+    }
+
+    .album-title-text {
+        font-size: min(1.2em, 1.5vw);
+    }
+}
+
+.album-card {
+    background-color: #2C394B;
+    border: 3px solid #283344;
+    border-radius: 5%;
+    padding: 5px;
+}
+
+.card-top {
+    display: flex;
+}
+
+
+
+
+.ratings-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6DAEDB;
+    margin-left: auto;
+    width: 90%;
+    height: 45%;
+    border-radius: 15px;
+}
+
+.play-now-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1F2041;
+    margin-left: auto;
+    width: 90%;
+    height: 45%;
+    border-radius: 15px;
+}
+
+.spotify-logo-link {
+    display: flex;
+    max-width: 90%;
+}
+
+.spotify-logo {
+    max-width: 100%;
+}
+
+.rating-text {
+    color: white;
+    text-align: center;
+    font-family: 'Lilita One';
+    /* font-weight: bolder; */
+    font-size: 4em;
+}
+
+.album-title-text {
+    /* Center Horizomtally */
+    display: block;
+
+    /* Text Styling */
+    color: white;
+    font-family: monospace;
+    font-weight: bold;
+    text-align: center;
+}
