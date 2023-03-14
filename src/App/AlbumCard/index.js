@@ -10,6 +10,9 @@ class AlbumCard extends React.Component {
             album: this.props.album
         }
     }
+    flipCard = () => {
+        alert("Flipping the card yo")
+    }
     renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
             {this.state.album.Title}
@@ -45,6 +48,7 @@ class AlbumCard extends React.Component {
                     </OverlayTrigger>
                     <h2 className="album-title-text">{`${this.state.album.Artist}`} </h2>
                 </div>
+                <i onClick={this.flipCard} className="fa-solid fa-rotate flip-icon"></i>
             </div>)
 
     }

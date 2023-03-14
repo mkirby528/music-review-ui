@@ -1,157 +1,165 @@
-    .album-card {
-        margin: auto;
-        height: 100%;
-        width: 100%;
-        background-color: #2C394B;
-        border: 3px solid #283344;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        border-radius: 5%;
-        padding: 5px;
-        overflow: hidden;
-    }
+.album-card {
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    background-color: #2C394B;
+    border: 3px solid #283344;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: 5%;
+    padding: 5px;
+    overflow: hidden;
+    position: relative;
+}
 
-    .card-top {
-        display: flex;
-        height: 65%;
-        width: 100%;
-    }
+.card-top {
+    display: flex;
+    height: 65%;
+    width: 100%;
+}
 
-    @media (min-width: 767px) {
-        .card-top {}
-    }
+@media (min-width: 767px) {
+    .card-top {}
+}
 
-    @media (max-width: 767px) {
-        .card-top {}
-    }
+@media (max-width: 767px) {
+    .card-top {}
+}
 
-    .card-bottom {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        /* border: 2px solid red; */
-        height: 35%;
-        width: 100%;
-    }
+.card-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 35%;
+    width: 100%;
+}
 
-    @media (min-width: 767px) {
-        .card-bottom {}
+@media (min-width: 767px) {
+    .card-bottom {}
 
 
-    }
+}
 
-    @media (max-width: 767px) {
-        .card-bottom {}
-    }
+@media (max-width: 767px) {
+    .card-bottom {}
+}
 
+.card-top-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    width: 50%;
+    overflow: hidden;
+}
+
+@media (max-width: 767px) {}
+
+@media (min-width: 767px) {}
+
+@media (max-width: 767px) {
     .card-top-column {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
         height: 100%;
         width: 50%;
         overflow: hidden;
     }
+}
 
-    @media (max-width: 767px) {}
+.album-cover-image {
+    height: 100%;
+    /*height of parent container*/
+    object-fit: contain;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
-    @media (min-width: 767px) {}
+@media (max-width: 767px) {
+    .album-cover-image {}
+}
 
-    @media (max-width: 767px) {
-        .card-top-column {
-            height: 100%;
-            width: 50%;
-            overflow: hidden;
-        }
-    }
+@media (mix-width: 767px) {
+    .album-cover-image {}
+}
 
-    .album-cover-image {
-        height: 100%;
-        /*height of parent container*/
-        object-fit: contain;
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-    }
+.album-title-text {
+    color: white;
+    font-family: monospace;
+    font-weight: bold;
+    text-align: center;
 
-    @media (max-width: 767px) {
-        .album-cover-image {}
-    }
 
-    @media (mix-width: 767px) {
-        .album-cover-image {}
-    }
+}
+
+@media (max-width: 767px) {
 
     .album-title-text {
-        color: white;
-        font-family: monospace;
-        font-weight: bold;
-        text-align: center;
-
-
+        /* Show only 2 lines of text and ellipsis for rest */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* number of lines to show */
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        font-size: min(1em, 5vw)
     }
+}
 
-    @media (max-width: 767px) {
-
-        .album-title-text {
-            /* Show only 2 lines of text and ellipsis for rest */
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            /* number of lines to show */
-            line-clamp: 2;
-            -webkit-box-orient: vertical;
-            font-size: min(1em, 5vw)
-        }
+@media (min-width: 767px) {
+    .album-title-text {
+        /* Show only 2 lines of text and ellipsis for rest */
+        font-size: min(1em, 2vw)
     }
-
-    @media (min-width: 767px) {
-        .album-title-text {
-            /* Show only 2 lines of text and ellipsis for rest */
-            font-size: min(1em, 2vw)
-        }
-    }
+}
 
 
 
-    .ratings-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #6DAEDB;
-        margin-left: auto;
-        width: 90%;
-        height: 45%;
-        border-radius: 15px;
-    }
+.ratings-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6DAEDB;
+    margin-left: auto;
+    width: 90%;
+    height: 45%;
+    border-radius: 15px;
+}
 
-    .play-now-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #1F2041;
-        margin-left: auto;
-        width: 90%;
-        height: 45%;
-        border-radius: 15px;
-    }
+.play-now-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1F2041;
+    margin-left: auto;
+    width: 90%;
+    height: 45%;
+    border-radius: 15px;
+}
 
-    .spotify-logo-link {
-        display: flex;
-        height: 100%;
-        width: 100%;
-    }
+.spotify-logo-link {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
 
-    .spotify-logo {
-        height: 60%;
-        margin: auto;
-    }
+.spotify-logo {
+    height: 60%;
+    margin: auto;
+}
 
-    .rating-text {
-        color: white;
-        text-align: center;
-        font-family: 'Lilita One';
-        font-size: 4em;
-    }
+.rating-text {
+    color: white;
+    text-align: center;
+    font-family: 'Lilita One';
+    font-size: 4em;
+}
+
+.flip-icon {
+    position: absolute;
+    color: white;
+    position: absolute;
+    bottom: 5px;
+    right: 10px
+}
