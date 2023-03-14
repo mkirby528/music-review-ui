@@ -9,12 +9,18 @@
 .card-grid {
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
 }
 
+
+
 .card-container {
+    align-self: flex-start;
     width: 100%;
     height: 33%;
-    margin: auto;
     padding: 5px;
 
 }

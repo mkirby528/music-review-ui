@@ -1,7 +1,7 @@
 .header {
     position: sticky;
     top: 0;
-    background-color: #292C33;
+    background-color: #1F2041;
     height: 10%;
     z-index: 999;
     display: flex;
@@ -211,5 +211,16 @@
     color: white;
     position: absolute;
     bottom: 5px;
-    right: 10px
+    right: 5px
+}
+
+.record-icon {
+    position: absolute;
+    bottom: 40px;
+    right: 5px;
+    color: white;
+}
+
+.record-icon-owned {
+    color: #6DAEDB;
 }

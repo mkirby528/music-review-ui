@@ -52,6 +52,7 @@ class AlbumCard extends React.Component {
                         </OverlayTrigger>
                         <h2 className="album-title-text">{`${this.state.album.Artist}`} </h2>
                     </div>
+                    <i className={this.state.album.HaveVinyl ? 'fa-solid fa-record-vinyl record-icon record-icon-owned' : 'fa-solid fa-record-vinyl record-icon'}></i>
                     <i onClick={this.flipCard} className="fa-solid fa-rotate flip-icon"></i>
                 </div>
                 <div className="card-back">
