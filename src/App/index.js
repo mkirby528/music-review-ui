@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import axios from "axios"
+import { Container } from "react-bootstrap";
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -35,8 +36,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="app">
-                {/* <Header /> */}
+            <Container fluid className="app">
                 <Row xs={1} md={3} className="card-grid">
                     {this.state.albums.map(album => (
                         <Col className="card-container">
@@ -44,7 +44,7 @@ class App extends React.Component {
                         </Col>)
                     )}
                 </Row>
-            </div>)
+            </Container>)
     }
 }
 

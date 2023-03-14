@@ -1,13 +1,48 @@
-@media (max-width: 767px) {
     .album-card {
-        width: 95%;
+        margin: auto;
         height: 100%;
-        border: 2px solid
+        width: 100%;
+        background-color: #2C394B;
+        border: 3px solid #283344;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        border-radius: 5%;
+        padding: 5px;
+        overflow: hidden;
     }
 
     .card-top {
+        display: flex;
         height: 65%;
         width: 100%;
+    }
+
+    @media (min-width: 767px) {
+        .card-top {}
+    }
+
+    @media (max-width: 767px) {
+        .card-top {}
+    }
+
+    .card-bottom {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        /* border: 2px solid red; */
+        height: 35%;
+        width: 100%;
+    }
+
+    @media (min-width: 767px) {
+        .card-bottom {}
+
+
+    }
+
+    @media (max-width: 767px) {
+        .card-bottom {}
     }
 
     .card-top-column {
@@ -19,133 +54,104 @@
         overflow: hidden;
     }
 
-    .album-cover-image {
-        margin: auto;
-        width: 50%;
-        height: auto;
-    }
+    @media (max-width: 767px) {}
 
-    .card-bottom {
-        display: flex;
-        flex-direction: column;
-        height: 35%;
-        width: 100%;
-    }
+    @media (min-width: 767px) {}
 
-
-
-    .album-title-text {
-        font-size: min(1.5em, 3vw);
-
-    }
-
-}
-
-@media (min-width: 767px) {
-    .album-card {
-        width: 100%;
-        height: 100%;
-    }
-
-    .card-top {
-        height: 65%;
-        width: 100%;
-    }
-
-    .card-top-column {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        height: 100%;
-        width: 50%;
+    @media (max-width: 767px) {
+        .card-top-column {
+            height: 100%;
+            width: 50%;
+            overflow: hidden;
+        }
     }
 
     .album-cover-image {
-        margin: auto;
-        width: 60%;
-        height: auto;
+        height: 100%;
+        /*height of parent container*/
+        object-fit: contain;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
-    .card-bottom {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        height: 35%;
-        width: 100%;
+    @media (max-width: 767px) {
+        .album-cover-image {}
+    }
 
+    @media (mix-width: 767px) {
+        .album-cover-image {}
     }
 
     .album-title-text {
-        font-size: min(1.2em, 1.5vw);
+        color: white;
+        font-family: monospace;
+        font-weight: bold;
+        text-align: center;
+
+
     }
-}
 
-.album-card {
-    background-color: #2C394B;
-    border: 3px solid #283344;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: auto;
-    border-radius: 5%;
-    padding: 5px;
-}
+    @media (max-width: 767px) {
 
-.card-top {
-    display: flex;
-}
+        .album-title-text {
+            /* Show only 2 lines of text and ellipsis for rest */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            /* number of lines to show */
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            font-size: min(1em, 5vw)
+        }
+    }
+
+    @media (min-width: 767px) {
+        .album-title-text {
+            /* Show only 2 lines of text and ellipsis for rest */
+            font-size: min(1em, 2vw)
+        }
+    }
 
 
 
+    .ratings-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #6DAEDB;
+        margin-left: auto;
+        width: 90%;
+        height: 45%;
+        border-radius: 15px;
+    }
 
-.ratings-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #6DAEDB;
-    margin-left: auto;
-    width: 90%;
-    height: 45%;
-    border-radius: 15px;
-}
+    .play-now-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #1F2041;
+        margin-left: auto;
+        width: 90%;
+        height: 45%;
+        border-radius: 15px;
+    }
 
-.play-now-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #1F2041;
-    margin-left: auto;
-    width: 90%;
-    height: 45%;
-    border-radius: 15px;
-}
+    .spotify-logo-link {
+        display: flex;
+        height: 100%;
+        width: 100%;
+    }
 
-.spotify-logo-link {
-    display: flex;
-    height: 100%;
-    width: 100%;
-}
+    .spotify-logo {
+        height: 60%;
+        margin: auto;
+    }
 
-.spotify-logo {
-    height: 50%;
-    margin: auto;
-}
-
-.rating-text {
-    color: white;
-    text-align: center;
-    font-family: 'Lilita One';
-    /* font-weight: bolder; */
-    font-size: 4em;
-}
-
-.album-title-text {
-    /* Center Horizomtally */
-    display: block;
-
-    /* Text Styling */
-    color: white;
-    font-family: monospace;
-    font-weight: bold;
-    text-align: center;
-}
+    .rating-text {
+        color: white;
+        text-align: center;
+        font-family: 'Lilita One';
+        font-size: 4em;
+    }
