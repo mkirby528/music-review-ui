@@ -1,3 +1,8 @@
+.flip-card>* {
+    width: 100%;
+    height: 100%;
+}
+
 .album-card {
     margin: auto;
     height: 100%;
@@ -12,6 +17,19 @@
     overflow: hidden;
     position: relative;
 }
+
+
+
+.card-front {
+    width: 100%;
+    height: 100%;
+}
+
+.card-back {
+    width: 100%;
+    height: 100%;
+}
+
 
 .card-top {
     display: flex;
