@@ -9,20 +9,34 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchTerm: '',
+            filterValues: {
+                searchTerm: '',
+                minYear: '1960',
+                maxYear: '2023'
+            }
         };
         this.searchUpdated = this.searchUpdated.bind(this)
+        this.releaseDateRangeUpdated = this.releaseDateRangeUpdated.bind(this)
     }
 
     searchUpdated(term) {
-        this.setState({ searchTerm: term })
+        let filterValues = { ...this.state.filterValues }
+        filterValues.searchTerm = term
+        this.setState({ filterValues })
+    }
+    releaseDateRangeUpdated(event, newValue) {
+        console.log(newValue)
+        let filterValues = { ...this.state.filterValues }
+        filterValues.minYear = newValue[0]
+        filterValues.maxYear = newValue[1]
+        this.setState({ filterValues })
     }
 
     render() {
         return (
             <Container fluid className="app">
-                <Header updateSearchFunction={this.searchUpdated}></Header>
-                <CardGrid searchTerm={this.state.searchTerm}></CardGrid>
+                <Header updateSearchFunction={this.searchUpdated} releaseDateRangeUpdated={this.releaseDateRangeUpdated}></Header>
+                <CardGrid filterValues={this.state.filterValues} ></CardGrid>
             </Container>)
     }
 }
