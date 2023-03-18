@@ -17,7 +17,8 @@ class CardGrid extends React.Component {
         const albumsPath = "/albums"
         const requestURL = baseUrl + albumsPath
         const params = {
-            sort_key: "Artist",
+            sort_key: "Rating",
+            sort_order: "desc"
         };
         const headers = {
             "Content-Type": "application/json"
