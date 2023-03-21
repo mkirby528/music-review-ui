@@ -25,7 +25,6 @@ class App extends React.Component {
         this.setState({ filterValues })
     }
     releaseDateRangeUpdated(event, newValue) {
-        console.log(newValue)
         let filterValues = { ...this.state.filterValues }
         filterValues.minYear = newValue[0]
         filterValues.maxYear = newValue[1]
