@@ -42,8 +42,6 @@ class CardGrid extends React.Component {
         }
         const KEYS_TO_FILTERS = ['Title', 'Artist']
         let filteredAlbums = this.state.albums.filter(createFilter(this.props.filterValues.searchTerm, KEYS_TO_FILTERS))
-        const averageRating = this.state.albums.reduce((total, { Rating }) => total + Rating, 0) / this.state.albums.length;
-        console.log(this.state.albums.map(item => item.Rating))
         filteredAlbums = filteredAlbums.filter(filterByYear)
 
 
