@@ -12,9 +12,9 @@ class Header extends React.Component {
                 <Slider
                     id="release-year-slider"
                     getAriaLabel={() => 'Temperature range'}
-                    min={1960}
+                    min={1965}
                     max={2023}
-                    defaultValue={[1960, 2023]}
+                    defaultValue={[1965, 2023]}
                     valueLabelDisplay="on"
                     onChange={this.props.releaseDateRangeUpdated}
                 />
