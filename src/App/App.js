@@ -5,43 +5,25 @@ import { Container } from "react-bootstrap";
 import CardGrid from "./CardGrid";
 import Header from "./Header"
 import { connect } from "react-redux";
-import { addAlbums } from "./Store/actions";
+import { addAlbums, updateSearchTerm, updateDateRange } from "./Store/actions";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            filterValues: {
-                searchTerm: '',
-                minYear: '1960',
-                maxYear: '2023'
-            }
-        };
-        this.searchUpdated = this.searchUpdated.bind(this)
-        this.releaseDateRangeUpdated = this.releaseDateRangeUpdated.bind(this)
+
     }
 
-    searchUpdated(term) {
-        let filterValues = { ...this.state.filterValues }
-        filterValues.searchTerm = term
-        this.setState({ filterValues })
-    }
-    releaseDateRangeUpdated(event, newValue) {
-        let filterValues = { ...this.state.filterValues }
-        filterValues.minYear = newValue[0]
-        filterValues.maxYear = newValue[1]
-        this.setState({ filterValues })
-    }
+
 
     render() {
         return (
             <Container fluid className="app">
                 <Header updateSearchFunction={this.searchUpdated} releaseDateRangeUpdated={this.releaseDateRangeUpdated}></Header>
-                <CardGrid filterValues={this.state.filterValues} ></CardGrid>
+                <CardGrid></CardGrid>
             </Container>)
     }
 }
 
 
 
-export default connect(null, { addAlbums })(App);
+export default connect(null, { addAlbums, updateSearchTerm, updateDateRange })(App);

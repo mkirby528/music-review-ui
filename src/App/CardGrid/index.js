@@ -32,7 +32,6 @@ class CardGrid extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         const minYear = String(this.props.filterValues.minYear)
         const maxYear = String(this.props.filterValues.maxYear)
         const filterByYear = (album) => {
@@ -44,7 +43,6 @@ class CardGrid extends React.Component {
         const KEYS_TO_FILTERS = ['Title', 'Artist']
         let filteredAlbums = this.props.albums.filter(createFilter(this.props.filterValues.searchTerm, KEYS_TO_FILTERS))
         filteredAlbums = filteredAlbums.filter(filterByYear)
-        console.log(filteredAlbums)
 
 
         return (
@@ -60,10 +58,10 @@ class CardGrid extends React.Component {
     }
 }
 function mapStateToProps(state) {
-    console.log(state)
     const { albumsStore } = state
     return {
         albums: albumsStore.albums,
+        filterValues: albumsStore.filterValues,
         isLoading: albumsStore.isLoading
     }
 }
