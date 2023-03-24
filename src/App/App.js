@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from "react-bootstrap";
 import CardGrid from "./CardGrid";
 import Header from "./Header"
+import { connect } from "react-redux";
+import { addAlbums } from "./Store/actions";
 
 class App extends React.Component {
     constructor(props) {
@@ -40,4 +42,6 @@ class App extends React.Component {
     }
 }
 
-export default App;
+
+
+export default connect(null, { addAlbums })(App);

@@ -4,13 +4,11 @@ import axios from "axios";
 import { Col, Row } from "react-bootstrap";
 import { createFilter } from "react-search-input";
 import AlbumCard from "../AlbumCard";
+import { connect } from "react-redux";
+import { addAlbums } from "../Store/actions";
 class CardGrid extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            isLoading: true,
-            albums: []
-        }
     }
     async fetchAllAlbums() {
         const baseUrl = "https://zjixv0m4di.execute-api.us-east-1.amazonaws.com/non-prod"
@@ -29,10 +27,12 @@ class CardGrid extends React.Component {
     }
     async componentDidMount() {
         const albumsResponse = await this.fetchAllAlbums()
-        this.setState({ albums: albumsResponse })
+        this.props.addAlbums(albumsResponse)
+
     }
 
     render() {
+        console.log(this.props)
         const minYear = String(this.props.filterValues.minYear)
         const maxYear = String(this.props.filterValues.maxYear)
         const filterByYear = (album) => {
@@ -40,8 +40,9 @@ class CardGrid extends React.Component {
             const releaseYear = (releaseDate.substr(releaseDate.length - 4))
             return releaseYear >= minYear && releaseYear <= maxYear
         }
+
         const KEYS_TO_FILTERS = ['Title', 'Artist']
-        let filteredAlbums = this.state.albums.filter(createFilter(this.props.filterValues.searchTerm, KEYS_TO_FILTERS))
+        let filteredAlbums = this.props.albums.filter(createFilter(this.props.filterValues.searchTerm, KEYS_TO_FILTERS))
         filteredAlbums = filteredAlbums.filter(filterByYear)
         console.log(filteredAlbums)
 
@@ -58,5 +59,14 @@ class CardGrid extends React.Component {
         )
     }
 }
+function mapStateToProps(state) {
+    console.log(state)
+    const { albumsStore } = state
+    return {
+        albums: albumsStore.albums,
+        isLoading: albumsStore.isLoading
+    }
+}
 
-export default CardGrid
+
+export default connect(mapStateToProps, { addAlbums })(CardGrid)
