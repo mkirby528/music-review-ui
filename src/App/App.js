@@ -8,13 +8,6 @@ import { connect } from "react-redux";
 import { addAlbums, updateSearchTerm, updateDateRange } from "./Store/actions";
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-
-    }
-
-
-
     render() {
         return (
             <Container fluid className="app">

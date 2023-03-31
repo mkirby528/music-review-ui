@@ -7,9 +7,6 @@ import AlbumCard from "../AlbumCard";
 import { connect } from "react-redux";
 import { addAlbums } from "../Store/actions";
 class CardGrid extends React.Component {
-    constructor(props) {
-        super(props)
-    }
     async fetchAllAlbums() {
         const baseUrl = "https://zjixv0m4di.execute-api.us-east-1.amazonaws.com/non-prod"
         const albumsPath = "/albums"
