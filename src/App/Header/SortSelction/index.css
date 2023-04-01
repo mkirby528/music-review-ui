@@ -1,0 +1,25 @@
+.sort-container {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+}
+
+.sort-radio-button {
+    border-radius: 0 !important;
+    width: 30%;
+}
+
+.sort-radio-group {
+    border-radius: 0px !important;
+    display: flex;
+    justify-content: center;
+
+}
+
+.sort-label {
+    color: white;
+
+}

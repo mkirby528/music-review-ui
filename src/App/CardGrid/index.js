@@ -28,6 +28,31 @@ class CardGrid extends React.Component {
 
     }
 
+    compareAlbums(key, order = 'asc') {
+        return function innerSort(a, b) {
+            if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+                // property doesn't exist on either object
+                return 0;
+            }
+
+            const varA = (typeof a[key] === 'string')
+                ? a[key].toUpperCase() : a[key];
+            const varB = (typeof b[key] === 'string')
+                ? b[key].toUpperCase() : b[key];
+
+            let comparison = 0;
+            if (varA > varB) {
+                comparison = 1;
+            } else if (varA < varB) {
+                comparison = -1;
+            }
+            return (
+                (order === 'desc') ? (comparison * -1) : comparison
+            );
+        };
+    }
+
+
     render() {
         const minYear = String(this.props.filterValues.minYear)
         const maxYear = String(this.props.filterValues.maxYear)
@@ -40,7 +65,8 @@ class CardGrid extends React.Component {
         const KEYS_TO_FILTERS = ['Title', 'Artist']
         let filteredAlbums = this.props.albums.filter(createFilter(this.props.filterValues.searchTerm, KEYS_TO_FILTERS))
         filteredAlbums = filteredAlbums.filter(filterByYear)
-
+        let sortOrder = this.props.filterValues.sortField === "Rating" ? "desc" : "asc"
+        filteredAlbums.sort(this.compareAlbums(this.props.filterValues.sortField, sortOrder))
 
         return (
             <Row xs={1} md={3} className="card-grid">

@@ -2,7 +2,7 @@
     position: sticky;
     top: 0;
     background-color: #292c33;
-    height: 10%;
+    height: 15%;
     z-index: 999;
     display: flex;
     justify-content: center;
@@ -59,4 +59,8 @@
 
 #release-year-slider {
     width: 20%;
+}
+
+.sort-radio-button {
+    color: white;
 }
