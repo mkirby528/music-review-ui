@@ -25,7 +25,6 @@ class CardGrid extends React.Component {
     async componentDidMount() {
         const albumsResponse = await this.fetchAllAlbums()
         this.props.addAlbums(albumsResponse)
-
     }
 
     compareAlbums(key, order = 'asc') {
