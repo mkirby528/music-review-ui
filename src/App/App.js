@@ -2,6 +2,7 @@ import "./App.css"
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AlbumGridPage from "./Pages/AlbumGrid";
+import StatsPage from "./Pages/Stats"
 import { connect } from "react-redux";
 import { addAlbums, updateSearchTerm, updateDateRange } from "./Store/actions";
 import {
@@ -15,7 +16,12 @@ class App extends React.Component {
         return (
             <Router>
                 <Switch>
-                    <Route path="/">
+                    <Route path="/stats">
+                        <StatsPage />
+                    </Route>
+                </Switch>
+                <Switch>
+                    <Route exact path="/">
                         <AlbumGridPage />
                     </Route>
                 </Switch>
