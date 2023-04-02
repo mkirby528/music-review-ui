@@ -1,16 +1,13 @@
 .sort-container {
-    flex-direction: column;
+    color: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
-
+    height: 100%;
+    width: 30%;
 }
 
-.sort-label {
-    color: white;
-
-}
 
 .sort-radio-group {
     width: 100%;

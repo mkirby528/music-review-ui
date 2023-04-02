@@ -57,10 +57,15 @@
     outline: none;
 }
 
-#release-year-slider {
-    width: 20%;
-}
+
 
 .sort-radio-button {
     color: white;
+}
+
+.filter-options-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 50%;
 }
