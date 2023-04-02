@@ -1,19 +1,26 @@
 import "./App.css"
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from "react-bootstrap";
-import CardGrid from "./Components/CardGrid";
-import Header from "./Components/Header"
+import AlbumGridPage from "./Pages/AlbumGrid";
 import { connect } from "react-redux";
 import { addAlbums, updateSearchTerm, updateDateRange } from "./Store/actions";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route
+} from "react-router-dom";
 
 class App extends React.Component {
     render() {
         return (
-            <Container fluid className="app">
-                <Header updateSearchFunction={this.searchUpdated} releaseDateRangeUpdated={this.releaseDateRangeUpdated}></Header>
-                <CardGrid></CardGrid>
-            </Container>)
+            <Router>
+                <Switch>
+                    <Route path="/">
+                        <AlbumGridPage />
+                    </Route>
+                </Switch>
+            </Router>
+        )
     }
 }
 
