@@ -28,17 +28,12 @@ class StatsPage extends React.Component {
     }
 
     render() {
-        let data = this.props.albums.map(album => {
-            return { "x": parseInt(album.Rating) }
-        })
-        console.log(data)
+
         return (
             <Container fluid className="app" >
                 <Header />
                 <h1 className="total-review-count-label">Total Reviews: {this.props.albums.length}</h1>
-                {this.props.albums.length > 0 &&
-                 
-                }
+
             </Container >)
     }
 }
