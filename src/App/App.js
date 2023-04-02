@@ -2,8 +2,8 @@ import "./App.css"
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from "react-bootstrap";
-import CardGrid from "./CardGrid";
-import Header from "./Header"
+import CardGrid from "./Components/CardGrid";
+import Header from "./Components/Header"
 import { connect } from "react-redux";
 import { addAlbums, updateSearchTerm, updateDateRange } from "./Store/actions";
 

@@ -3,7 +3,7 @@ import React from "react";
 import Radio from "@mui/joy/Radio";
 import RadioGroup from "@mui/joy/RadioGroup";
 import { connect } from "react-redux";
-import { updateSearchTerm, updateDateRange, updateSortField } from "../../Store/actions";
+import { updateSearchTerm, updateDateRange, updateSortField } from "../../../Store/actions"
 class SortSelection extends React.Component {
     constructor(props) {
         super(props)

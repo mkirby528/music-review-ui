@@ -1,7 +1,7 @@
 import "./index.css"
 import React from "react";
 import { Slider } from "@mui/joy";
-import { updateDateRange } from "../../Store/actions";
+import { updateDateRange } from "../../../Store/actions";
 import { connect } from "react-redux";
 
 class ReleaseDateSlider extends React.Component {

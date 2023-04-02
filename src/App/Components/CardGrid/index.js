@@ -5,7 +5,7 @@ import { Col, Row } from "react-bootstrap";
 import { createFilter } from "react-search-input";
 import AlbumCard from "../AlbumCard";
 import { connect } from "react-redux";
-import { addAlbums } from "../Store/actions";
+import { addAlbums } from "../../Store/actions";
 class CardGrid extends React.Component {
     async fetchAllAlbums() {
         const baseUrl = "https://zjixv0m4di.execute-api.us-east-1.amazonaws.com/non-prod"

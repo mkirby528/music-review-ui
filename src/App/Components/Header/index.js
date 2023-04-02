@@ -4,7 +4,7 @@ import SearchInput from "react-search-input"
 import ReleaseDateSlider from "./ReleaseDateSlider";
 import SortSelction from "./SortSelction";
 import { connect } from "react-redux";
-import { updateSearchTerm, updateDateRange } from "../Store/actions";
+import { updateSearchTerm, updateDateRange } from "../../Store/actions";
 import { Row } from "react-bootstrap";
 class Header extends React.Component {
 
