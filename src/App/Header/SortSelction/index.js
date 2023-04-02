@@ -17,7 +17,7 @@ class SortSelection extends React.Component {
         return (
             <div className="sort-container">
                 <h6 className="sort-label">
-                    Sort Field
+                    Sort
                 </h6>
                 <RadioGroup
                     orientation="horizontal"
