@@ -2,7 +2,6 @@ import "./index.css"
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from "react-bootstrap";
-import CardGrid from "../../Components/CardGrid";
 import Header from "../../Components/Header"
 import { connect } from "react-redux";
 import { addAlbums, updateSearchTerm, updateDateRange } from "../../Store/actions";
