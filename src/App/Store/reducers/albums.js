@@ -22,7 +22,6 @@ export default function reducer(state = initialState, action) {
         }
         case UPDATE_SEARCH_TERM: {
             let newFilterValues = { ...state.filterValues, searchTerm: action.payload.searchValue }
-            console.log(newFilterValues)
             return {
                 ...state,
                 filterValues: newFilterValues
@@ -30,7 +29,6 @@ export default function reducer(state = initialState, action) {
         }
         case UPDATE_DATE_RANGE: {
             let newFilterValues = { ...state.filterValues, minYear: action.payload[0], maxYear: action.payload[1] }
-            console.log(newFilterValues)
             return {
                 ...state,
                 filterValues: newFilterValues

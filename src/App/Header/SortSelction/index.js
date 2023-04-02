@@ -10,7 +10,6 @@ class SortSelection extends React.Component {
         this.updateSortField = this.updateSortField.bind(this)
     }
     updateSortField(event) {
-        console.log("Here")
         this.props.updateSortField(event.target.value)
     }
     render() {
