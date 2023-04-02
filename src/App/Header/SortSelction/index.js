@@ -21,7 +21,6 @@ class SortSelection extends React.Component {
                 </h6>
                 <RadioGroup
                     orientation="horizontal"
-                    aria-labelledby="segmented-controls-example"
                     name="sortField"
                     className="sort-radio-group"
                     onChange={this.updateSortField}
@@ -34,17 +33,23 @@ class SortSelection extends React.Component {
                             value={item}
                             label={item}
                             disableIcon
-                            className="s`ort-radio-button"
-                            variant="soft"
+                            className="sort-radio-button"
+                            size="md"
+                            variant="solid"
                             slotProps={{
                                 action: ({ checked }) => ({
                                     sx: {
                                         ...(checked && {
                                             bgcolor: '#6DAEDB',
+                                            boxShadow: 'sm',
+                                            '&:hover': {
+                                                bgcolor: '#6DAEDB',
+                                            },
                                         }),
                                     },
                                 }),
                             }}
+
                         />
                     ))}
                 </RadioGroup>
