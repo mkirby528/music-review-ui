@@ -10,7 +10,7 @@ import { addAlbums, updateSearchTerm, updateDateRange } from "../../Store/action
 class AlbumGridPage extends React.Component {
     render() {
         return (
-            <Container fluid className="app">
+            <Container fluid className="app-page">
                 <Header updateSearchFunction={this.searchUpdated} releaseDateRangeUpdated={this.releaseDateRangeUpdated}></Header>
                 <CardGrid></CardGrid>
             </Container>)

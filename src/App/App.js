@@ -3,6 +3,7 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AlbumGridPage from "./Pages/AlbumGrid";
 import StatsPage from "./Pages/Stats"
+import AddReviewPage from "./Pages/AddReview"
 import LoginPage from "./Pages/Login"
 import { connect } from "react-redux";
 import { addAlbums, updateSearchTerm, updateDateRange } from "./Store/actions";
@@ -19,6 +20,11 @@ class App extends React.Component {
                 <Switch>
                     <Route path="/stats">
                         <StatsPage />
+                    </Route>
+                </Switch>
+                <Switch>
+                    <Route path="/add">
+                        <AddReviewPage />
                     </Route>
                 </Switch>
                 <Switch>
