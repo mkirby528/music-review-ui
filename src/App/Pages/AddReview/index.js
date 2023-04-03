@@ -1,20 +1,19 @@
 
 import "./index.css"
 import React from "react";
-
+import axios from "axios";
 import { connect } from "react-redux";
-import { Input, Box, FormControl } from "@mui/joy";
+import { Input, Button, Box, FormControl } from "@mui/joy";
 import { FormLabel, Row } from "react-bootstrap";
 import Switch, { switchClasses } from '@mui/joy/Switch';
+import { Redirect } from "react-router-dom";
 
 
 class AddReviewPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            title: "",
-            artist: "",
-            rating: -1,
+            redirectToHome: false,
             haveVinylChecked: false,
 
         }
@@ -22,16 +21,42 @@ class AddReviewPage extends React.Component {
     setChecked(value) {
         this.setState({ "haveVinylChecked": value })
     }
-    render() {
+    async formSubmitted(event) {
+        event.preventDefault()
+        const Title = event.target[0].value
+        const Artist = event.target[1].value
+        const Rating = event.target[2].value
+        const HaveVinyl = event.target[3].checked
+        const album = {
+            Title, Artist, Rating, HaveVinyl
+        }
+        let response = await this.postAlbumReview(album)
+        if (response.status === 201) {
+            this.setState({ redirectToHome: true })
+        }
+        console.log(response)
+    }
+    async postAlbumReview(album) {
+        const baseUrl = "https://zjixv0m4di.execute-api.us-east-1.amazonaws.com/non-prod"
+        const albumsPath = "/albums"
+        const requestURL = baseUrl + albumsPath
 
+        const response = await axios.post(requestURL, album)
+        return response
+    }
+    render() {
+        const redirectToHome = this.state.redirectToHome;
+        if (redirectToHome) {
+            return <Redirect to="/" />
+        }
         return (
             <Box className="app-page" >
                 <form className="add-review-form"
                     onSubmit={(event) => {
-                        event.preventDefault();
+                        this.formSubmitted(event)
                     }}
                 >
-                    <FormControl>
+                    <FormControl className="review-form-control">
                         <FormLabel className="review-form-label">
                             Title
                         </FormLabel>
@@ -41,7 +66,7 @@ class AddReviewPage extends React.Component {
                             required
                         />
                     </FormControl>
-                    <FormControl>
+                    <FormControl className="review-form-control">
                         <FormLabel className="review-form-label">
                             Artist
                         </FormLabel>
@@ -52,7 +77,7 @@ class AddReviewPage extends React.Component {
                         />
                     </FormControl>
                     <Row xs={1} sm={2}>
-                        <FormControl>
+                        <FormControl className="review-form-control">
                             <FormLabel className="review-form-label text-centered">
                                 Rating
                             </FormLabel>
@@ -73,7 +98,7 @@ class AddReviewPage extends React.Component {
                             />
 
                         </FormControl>
-                        <FormControl>
+                        <FormControl className="review-form-control">
                             <FormLabel className="review-form-label text-centered">
                                 Have Viny?
                             </FormLabel>
@@ -96,9 +121,14 @@ class AddReviewPage extends React.Component {
                                         },
                                     },
                                 }}
-                            />                        </FormControl>
+                            />
+                        </FormControl>
                     </Row>
+                    <FormControl className="review-form-control">
+                        <Button className="review-form-submit-button"
 
+                            type="submit">Submit</Button>
+                    </FormControl>
                 </form>
             </Box >)
     }

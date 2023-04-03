@@ -1,7 +1,7 @@
 .add-review-form {
     width: 50%;
 
-    padding: 10px;
+    padding: 5px;
     border-radius: 20px;
     margin: auto;
     font-family: monospace;
@@ -9,8 +9,11 @@
 
 }
 
+.review-form-control {
+    margin-top: 10px;
+}
+
 .review-form-label {
-    margin: 5px;
     color: white;
 }
 
@@ -29,4 +32,17 @@
 
 .review-form-input {
     font-family: monospace !important;
+}
+
+.review-form-submit-button {
+    background-color: lime;
+    font-weight: bolder;
+    font-size: 2em;
+    font-family: monospace;
+    color: white;
+}
+
+.review-form-submit-button:hover {
+    background-color: lime !important;
+    opacity: 90%;
 }
