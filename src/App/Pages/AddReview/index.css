@@ -1,11 +1,10 @@
 .add-review-form {
     width: 50%;
-
-    padding: 5px;
+    padding: 20px;
     border-radius: 20px;
     margin: auto;
     font-family: monospace;
-    background-color: #301934;
+    background-color: #2A547E;
 
 }
 
@@ -35,7 +34,7 @@
 }
 
 .review-form-submit-button {
-    background-color: lime !important;
+    background-color: #5CB176 !important;
     font-weight: bolder;
     font-size: 2em;
     font-family: monospace;
@@ -43,6 +42,6 @@
 }
 
 .review-form-submit-button:hover {
-    background-color: lime !important;
+    background-color: #5CB176 !important;
     opacity: 90%;
 }

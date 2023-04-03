@@ -126,7 +126,6 @@ class AddReviewPage extends React.Component {
                     </Row>
                     <FormControl className="review-form-control">
                         <Button className="review-form-submit-button"
-
                             type="submit">Submit</Button>
                     </FormControl>
                 </form>
