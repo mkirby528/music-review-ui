@@ -4,7 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AlbumGridPage from "./Pages/AlbumGrid";
 import StatsPage from "./Pages/Stats"
 import AddReviewPage from "./Pages/AddReview"
-import LoginPage from "./Pages/Login"
+import LoginPage from "./Pages/Auth/Login"
+import RegisterPage from "./Pages/Auth/Register"
+
 import { connect } from "react-redux";
 import { addAlbums, updateSearchTerm, updateDateRange } from "./Store/actions";
 import {
@@ -33,10 +35,16 @@ class App extends React.Component {
                     </Route>
                 </Switch>
                 <Switch>
+                    <Route exact path="/register">
+                        <RegisterPage />
+                    </Route>
+                </Switch>
+                <Switch>
                     <Route exact path="/">
                         <AlbumGridPage />
                     </Route>
                 </Switch>
+
             </Router>
         )
     }
