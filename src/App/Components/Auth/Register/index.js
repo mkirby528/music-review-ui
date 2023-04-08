@@ -1,6 +1,9 @@
 import { CognitoUser, CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import React from "react";
+import { Input, Button } from '@mui/joy';
 import UserPool from '../../../Auth/UserPool';
+import { Container } from 'react-bootstrap';
+import "./index.css"
 
 class Register extends React.Component {
     constructor(props) {
@@ -41,11 +44,9 @@ class Register extends React.Component {
         UserPool.signUp(this.state.username, this.state.password, attributeList, null, (err, data) => {
             if (err) {
                 console.log(err);
-                alert("Couldn't sign up");
             } else {
                 console.log(data);
                 this.setVerifyProcess(true);
-                alert('User Added Successfully');
             }
         });
     };
@@ -60,55 +61,57 @@ class Register extends React.Component {
         user.confirmRegistration(this.state.OTP, true, (err, data) => {
             if (err) {
                 console.log(err);
-                alert("Couldn't verify account");
             } else {
                 console.log(data);
-                alert('Account verified successfully');
                 window.location.href = '/login';
             }
         });
     };
     render() {
         return (
-            <div>
+            <Container fluid className="form-container">
                 {this.state.verifyProcess === false ? (
-                    <form onSubmit={this.onSubmit}>
-                        UserName:
-                        <input
-                            type="text"
-                            value={this.state.username.toLowerCase().trim()}
-                            onChange={(e) => this.setUsername(e.target.value)}
-                        />
-                        <br />
-                        Email:
-                        <input
-                            type="email"
-                            value={this.state.email}
-                            onChange={(e) => this.setEmail(e.target.value)}
-                        />
-                        <br />
-                        Password:
-                        <input
-                            type="password"
-                            value={this.state.password}
-                            onChange={(e) => this.setPassword(e.target.value)}
-                        />
-                        <br />
-                        <button type="submit">Register</button>
+                    <form className='form' onSubmit={this.onSubmit}>
+                        <div className="form-control">
+                            <Input
+                                placeholder='username'
+                                type="text"
+                                value={this.state.username.toLowerCase().trim()}
+                                onChange={(e) => this.setUsername(e.target.value)}
+                            />
+
+                            <Input
+                                className='input'
+                                placeholder='email'
+                                type="text"
+                                value={this.state.email}
+                                onChange={(e) => this.setEmail(e.target.value)}
+                            />
+
+                            <Input
+                                className='input'
+                                placeholder='password'
+                                type="password"
+                                value={this.state.password}
+                                onChange={(e) => this.setPassword(e.target.value)}
+                            />
+                            <Button className='input submit-button' type="submit">Register</Button>
+                        </div>
                     </form>
                 ) : (
-                    <form onSubmit={this.verifyAccount}>
-                        Enter the OTP:
-                        <input
+                    <form id='otp-form' className='form' onSubmit={this.verifyAccount}>
+                        <Input
+                            className='input'
+                            placeholder='One Time Password (OTP)'
                             type="text"
                             value={this.state.OTP}
                             onChange={(e) => this.setOTP(e.target.value)}
                         />
-                        <br />
-                        <button type="submit">Verify</button>
+                        <Button className='input submit-button' type="submit">Verify</Button>
                     </form>
-                )}
-            </div >
+                )
+                }
+            </Container >
         )
     }
 }
