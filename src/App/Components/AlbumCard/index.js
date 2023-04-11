@@ -3,6 +3,7 @@ import "./index.css"
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from 'react-bootstrap/Tooltip';
 import ReactCardFlip from 'react-card-flip';
+import axios from "axios";
 
 class AlbumCard extends React.Component {
     constructor(props) {
@@ -15,6 +16,31 @@ class AlbumCard extends React.Component {
     flipCard = (e) => {
         e.preventDefault();
         this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
+    }
+    toggleHaveVinyl = async () => {
+        const newValue = !this.state.album.HaveVinyl
+        if (newValue) {
+            const baseUrl = "https://zjixv0m4di.execute-api.us-east-1.amazonaws.com/non-prod"
+            const addVinylPath = `/albums/${this.state.album.id}/addVinyl`
+            const requestURL = baseUrl + addVinylPath
+            try {
+                const response = await axios.patch(requestURL, {}, {
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                });
+                if (response.status === 200) {
+                    const newAlbumObject = { ...this.state.album, "HaveVinyl": newValue }
+                    console.log(newAlbumObject)
+                    this.setState({ album: newAlbumObject })
+                }
+
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
+
     }
     renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
@@ -52,7 +78,7 @@ class AlbumCard extends React.Component {
                         </OverlayTrigger>
                         <h2 className="album-title-text">{`${this.state.album.Artist}`} </h2>
                     </div>
-                    <i className={this.state.album.HaveVinyl ? 'fa-solid fa-record-vinyl record-icon record-icon-owned' : 'fa-solid fa-record-vinyl record-icon'}></i>
+                    <i onClick={this.toggleHaveVinyl} className={this.state.album.HaveVinyl ? 'fa-solid fa-record-vinyl record-icon record-icon-owned' : 'fa-solid fa-record-vinyl record-icon'}></i>
                     <i onClick={this.flipCard} className="fa-solid fa-rotate flip-icon"></i>
                 </div>
                 <div className="card-back">
