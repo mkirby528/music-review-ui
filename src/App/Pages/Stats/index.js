@@ -34,16 +34,16 @@ class StatsPage extends React.Component {
         if (!this.props.albums || this.props.albums.length === 0) {
             const albumsResponse = await this.fetchAllAlbums()
             await this.props.addAlbums(albumsResponse)
-            this.getRatingCouts()
+
         }
     }
 
-    getRatingCouts() {
+    getRatingCounts() {
         const ratingCounts = {};
         this.props.albums.forEach(function (v) {
             ratingCounts[v.Rating] = (ratingCounts[v.Rating] || 0) + 1;
         })
-        this.setState({ ratingCounts })
+        return ratingCounts
     }
 
     render() {
@@ -56,13 +56,13 @@ class StatsPage extends React.Component {
                 },
             },
         };
-        const labels = Object.keys(this.state.ratingCounts)
+        const labels = Object.keys(this.getRatingCounts(this.props.albums))
         const data = {
             labels,
             datasets: [
                 {
                     label: 'Count',
-                    data: Object.values(this.state.ratingCounts),
+                    data: Object.values(this.getRatingCounts(this.props.albums)),
                     backgroundColor: 'rgba(0, 255, 132, 0.8)',
                 },
 

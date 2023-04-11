@@ -13,7 +13,12 @@ class Header extends React.Component {
     render() {
         return (
             <Row className="header">
-                <Col xs={11}>
+                <Col className="home-button-column">
+                    <Link to="/">
+                        <i className="icon-link fa-solid fa-home"></i>
+                    </Link>
+                </Col>
+                <Col xs={10}>
                     <SearchInput className="search-input" fuzzy onChange={this.props.updateSearchTerm} />
                     <Row className="filter-options-container" xs={2}>
                         <ReleaseDateSlider></ReleaseDateSlider>
