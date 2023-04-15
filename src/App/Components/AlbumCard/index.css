@@ -2,8 +2,8 @@
     margin: auto;
     height: 100%;
     width: 100%;
-    background-color: #2A547E;
-    border: 1px solid #283344;
+    background-color: #2C394B;
+    border: 3px solid #283344;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -21,6 +21,8 @@
 .card-back {
     width: 100%;
     height: 100%;
+    display: flex;
+    overflow: auto;
 }
 
 

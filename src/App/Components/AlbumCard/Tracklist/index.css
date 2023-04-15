@@ -1,0 +1,22 @@
+.tracklist-container {
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    color: white;
+
+}
+
+.tracklist-item-container {
+    width: 100%;
+    max-width: 100%;
+    font-family: monospace;
+    padding-left: 2em;
+    text-indent: -2em;
+}
+
+.tracklist-label {
+    font-family: monospace;
+    font-weight: bolder;
+    text-align: center;
+    /* text-decoration: underline; */
+}

@@ -4,7 +4,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from 'react-bootstrap/Tooltip';
 import ReactCardFlip from 'react-card-flip';
 import axios from "axios";
-
+import Tracklist from "./Tracklist"
 class AlbumCard extends React.Component {
     constructor(props) {
         super(props)
@@ -50,6 +50,7 @@ class AlbumCard extends React.Component {
 
 
     render() {
+        console.log(this.state.album.Tracks)
         return (
             <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal" containerClassName="album-card">
                 <div className="card-front">
@@ -82,6 +83,8 @@ class AlbumCard extends React.Component {
                     <i onClick={this.flipCard} className="fa-solid fa-rotate flip-icon"></i>
                 </div>
                 <div className="card-back">
+                    <Tracklist tracks={this.state.album.Tracks} />
+
                     <i onClick={this.flipCard} className="fa-solid fa-rotate flip-icon"></i>
 
                 </div>
