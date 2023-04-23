@@ -55,21 +55,48 @@
     cursor: pointer
 }
 
+.filter-options-column {
+    height: 100%;
+
+}
+
 .search-input>input:focus {
     outline: none;
 }
 
+.sort-container {
+    color: white !important;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 10px;
 
+}
+
+.sort-radio-group {
+    width: 100% !important;
+    display: flex !important;
+
+}
 
 .sort-radio-button {
-    color: white;
+    overflow: hidden;
+    font-size: 1em !important;
 }
 
 .filter-options-container {
+    height: 60%;
+    overflow: hidden;
     display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    height: 50%;
+
+}
+
+.release-date-slider-column {
+    width: 25%;
+}
+
+.sort-selection-column {
+    width: 75%;
 }
 
 .add-review-column,

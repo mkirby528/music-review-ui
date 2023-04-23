@@ -18,11 +18,15 @@ class Header extends React.Component {
                         <i className="icon-link fa-solid fa-home"></i>
                     </Link>
                 </Col>
-                <Col xs={10}>
+                <Col className="filter-options-column" xs={10}>
                     <SearchInput className="search-input" fuzzy onChange={this.props.updateSearchTerm} />
                     <Row className="filter-options-container" xs={2}>
-                        <ReleaseDateSlider></ReleaseDateSlider>
-                        <SortSelction></SortSelction>
+                        <Col className="release-date-slider-column">
+                            <ReleaseDateSlider></ReleaseDateSlider>
+                        </Col>
+                        <Col xs={8} className="sort-selection-column">
+                            <SortSelction></SortSelction>
+                        </Col>
                     </Row>
                 </Col>
                 <Col className="add-review-column">
