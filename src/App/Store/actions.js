@@ -1,4 +1,4 @@
-import { ADD_ALBUMS, UPDATE_SEARCH_TERM, UPDATE_DATE_RANGE, UPDATE_SORT_FIELD } from "./actionTypes";
+import { ADD_ALBUMS, UPDATE_SEARCH_TERM, UPDATE_DATE_RANGE, UPDATE_SORT_FIELD, UPDATE_SORT_ORDER } from "./actionTypes";
 
 
 export const addAlbums = albums => ({
@@ -20,12 +20,14 @@ export const updateDateRange = (minYear, maxYear) => ({
     payload: [minYear, maxYear]
 })
 
-
-
-
 export const updateSortField = (sortField) => ({
     type: UPDATE_SORT_FIELD,
     payload: sortField
+})
+
+export const updateSortOrder = (sortOrder) => ({
+    type: UPDATE_SORT_ORDER,
+    payload: sortOrder
 })
 
 

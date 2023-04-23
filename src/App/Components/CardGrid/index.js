@@ -63,7 +63,7 @@ class CardGrid extends React.Component {
         const KEYS_TO_FILTERS = ['Title', 'ArtistsString']
         let filteredAlbums = this.props.albums.filter(createFilter(this.props.filterValues.searchTerm, KEYS_TO_FILTERS))
         filteredAlbums = filteredAlbums.filter(filterByYear)
-        let sortOrder = this.props.filterValues.sortField === "Rating" ? "desc" : "asc"
+        let sortOrder = this.props.filterValues.sortOrder
         filteredAlbums.sort(this.compareAlbums(this.props.filterValues.sortField, sortOrder))
         console.log(`${filteredAlbums.length} filtered albums`)
         return (

@@ -1,4 +1,4 @@
-import { ADD_ALBUMS, UPDATE_SEARCH_TERM, UPDATE_DATE_RANGE, UPDATE_SORT_FIELD } from "../actionTypes";
+import { ADD_ALBUMS, UPDATE_SEARCH_TERM, UPDATE_DATE_RANGE, UPDATE_SORT_FIELD, UPDATE_SORT_ORDER } from "../actionTypes";
 
 const initialState = {
     albums: [],
@@ -6,7 +6,8 @@ const initialState = {
         searchTerm: '',
         minYear: '1960',
         maxYear: '2023',
-        sortField: "Rating"
+        sortField: "DateListened",
+        sortOrder: "desc"
     },
     isLoading: true,
 };
@@ -36,6 +37,14 @@ export default function reducer(state = initialState, action) {
         }
         case UPDATE_SORT_FIELD: {
             let newFilterValues = { ...state.filterValues, sortField: action.payload }
+            return {
+                ...state,
+                filterValues: newFilterValues
+            }
+
+        }
+        case UPDATE_SORT_ORDER: {
+            let newFilterValues = { ...state.filterValues, sortOrder: action.payload }
             return {
                 ...state,
                 filterValues: newFilterValues

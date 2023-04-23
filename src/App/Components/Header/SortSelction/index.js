@@ -3,14 +3,23 @@ import React from "react";
 import Radio from "@mui/joy/Radio";
 import RadioGroup from "@mui/joy/RadioGroup";
 import { connect } from "react-redux";
-import { updateSearchTerm, updateDateRange, updateSortField } from "../../../Store/actions";
+import { updateSearchTerm, updateDateRange, updateSortField, updateSortOrder } from "../../../Store/actions";
+
 class SortSelection extends React.Component {
     constructor(props) {
         super(props)
         this.updateSortField = this.updateSortField.bind(this)
+        this.updateSortOrder = this.updateSortOrder.bind(this)
     }
     updateSortField(event) {
         this.props.updateSortField(event.target.value)
+    }
+    updateSortOrder(event) {
+        let sortOrder = "desc"
+        if (this.props.filterValues.sortOrder === "desc") {
+            sortOrder = "asc"
+        }
+        this.props.updateSortOrder(sortOrder)
     }
     render() {
         return (
@@ -18,41 +27,44 @@ class SortSelection extends React.Component {
                 <h6 className="sort-label">
                     Sort
                 </h6>
-                <RadioGroup
-                    orientation="horizontal"
-                    name="sortField"
-                    className="sort-radio-group"
-                    onChange={this.updateSortField}
-                    value={this.props.filterValues.sortField}
+                <div className="sort-buttons-container">
+                    <RadioGroup
+                        orientation="horizontal"
+                        name="sortField"
+                        className="sort-radio-group"
+                        onChange={this.updateSortField}
+                        value={this.props.filterValues.sortField}
 
-                >
-                    {['Rating', 'Title', 'Artists', 'DateListened', 'ReleaseDate'].map((item) => (
-                        <Radio
-                            key={item}
-                            value={item}
-                            label={item}
-                            disableIcon
-                            className="sort-radio-button"
-                            size="md"
-                            variant="solid"
-                            slotProps={{
-                                action: ({ checked }) => ({
-                                    sx: {
-                                        ...(checked && {
-                                            bgcolor: '#6DAEDB',
-                                            boxShadow: 'sm',
-                                            '&:hover': {
+                    >
+                        {['Rating', 'Title', 'Artists', 'DateListened', 'ReleaseDate'].map((item) => (
+                            <Radio
+                                key={item}
+                                value={item}
+                                label={item}
+                                disableIcon
+                                className="sort-radio-button"
+                                size="md"
+                                variant="solid"
+                                slotProps={{
+                                    action: ({ checked }) => ({
+                                        sx: {
+                                            ...(checked && {
                                                 bgcolor: '#6DAEDB',
-                                            },
-                                        }),
-                                    },
-                                }),
-                            }}
+                                                boxShadow: 'sm',
+                                                '&:hover': {
+                                                    bgcolor: '#6DAEDB',
+                                                },
+                                            }),
+                                        },
+                                    }),
+                                }}
 
-                        />
-                    ))}
+                            />
+                        ))}
+                    </RadioGroup>
+                    <i onClick={this.updateSortOrder} className={this.props.filterValues.sortOrder === "asc" ? "fa-solid fa-arrow-up" : "fa-solid fa-arrow-down"}></i>
+                </div>
 
-                </RadioGroup>
             </div>
         )
     }
@@ -65,4 +77,4 @@ function mapStateToProps(state) {
         isLoading: albumsStore.isLoading
     }
 }
-export default connect(mapStateToProps, { updateSearchTerm, updateDateRange, updateSortField })(SortSelection);
+export default connect(mapStateToProps, { updateSearchTerm, updateDateRange, updateSortField, updateSortOrder })(SortSelection);

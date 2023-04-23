@@ -24,7 +24,7 @@ class Header extends React.Component {
                         <Col className="release-date-slider-column">
                             <ReleaseDateSlider></ReleaseDateSlider>
                         </Col>
-                        <Col xs={8} className="sort-selection-column">
+                        <Col className="sort-selection-column">
                             <SortSelction></SortSelction>
                         </Col>
                     </Row>
