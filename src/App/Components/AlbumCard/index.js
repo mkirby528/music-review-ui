@@ -49,8 +49,8 @@ class AlbumCard extends React.Component {
     );
 
 
+
     render() {
-        console.log(this.state.album.Tracks)
         return (
             <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal" containerClassName="album-card">
                 <div className="card-front">
@@ -77,13 +77,13 @@ class AlbumCard extends React.Component {
                         >
                             <h1 className="album-title-text">{`${this.state.album.Title}`} </h1>
                         </OverlayTrigger>
-                        <h2 className="album-title-text">{`${this.state.album.Artist}`} </h2>
+                        <h2 className="album-title-text">{this.state.album.ArtistsString}</h2>
                     </div>
                     <i onClick={this.toggleHaveVinyl} className={this.state.album.HaveVinyl ? 'fa-solid fa-record-vinyl record-icon record-icon-owned' : 'fa-solid fa-record-vinyl record-icon'}></i>
                     <i onClick={this.flipCard} className="fa-solid fa-rotate flip-icon"></i>
                 </div>
                 <div className="card-back">
-                    <Tracklist tracks={this.state.album.Tracks} />
+                    <Tracklist tracks={this.state.album.Tracks ? this.state.album.Tracks : []} />
 
                     <i onClick={this.flipCard} className="fa-solid fa-rotate flip-icon"></i>
 

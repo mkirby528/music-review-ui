@@ -56,17 +56,16 @@ class CardGrid extends React.Component {
         const minYear = String(this.props.filterValues.minYear)
         const maxYear = String(this.props.filterValues.maxYear)
         const filterByYear = (album) => {
-            const releaseDate = album.ReleaseDate
-            const releaseYear = (releaseDate.substr(releaseDate.length - 4))
+            const releaseYear = album.ReleaseYear
             return releaseYear >= minYear && releaseYear <= maxYear
         }
 
-        const KEYS_TO_FILTERS = ['Title', 'Artist']
+        const KEYS_TO_FILTERS = ['Title', 'ArtistsString']
         let filteredAlbums = this.props.albums.filter(createFilter(this.props.filterValues.searchTerm, KEYS_TO_FILTERS))
         filteredAlbums = filteredAlbums.filter(filterByYear)
         let sortOrder = this.props.filterValues.sortField === "Rating" ? "desc" : "asc"
         filteredAlbums.sort(this.compareAlbums(this.props.filterValues.sortField, sortOrder))
-
+        console.log(`${filteredAlbums.length} filtered albums`)
         return (
             <Row xs={1} md={3} className="card-grid">
                 {filteredAlbums.map(album => (
