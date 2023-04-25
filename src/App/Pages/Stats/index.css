@@ -9,7 +9,6 @@
 }
 
 .stats-container {
-    max-height: 50%;
     max-width: 50%;
     overflow: auto;
     text-align: center;

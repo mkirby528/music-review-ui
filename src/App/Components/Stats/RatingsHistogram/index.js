@@ -25,7 +25,7 @@ class RatingsHistogram extends React.Component {
 
     render() {
         const options = {
-            responsive: false,
+            responsive: true,
             plugins: {
                 title: {
                     display: true,
