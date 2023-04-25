@@ -1,3 +1,16 @@
 .total-review-count-label {
     color: white;
 }
+
+.data-container {
+    height: 85%;
+    width: 100;
+    display: flex;
+}
+
+.stats-container {
+    max-height: 50%;
+    max-width: 50%;
+    overflow: auto;
+    text-align: center;
+}

@@ -6,19 +6,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from "react-bootstrap";
 import Header from "../../Components/Header"
 import { connect } from "react-redux";
+import RatingsHistogram from "../../Components/Stats/RatingsHistogram";
+import ArtistsHistogram from "../../Components/Stats/ArtistsHistogram";
 import { addAlbums, updateSearchTerm, updateDateRange } from "../../Store/actions";
-import { Chart, registerables } from 'chart.js';
-import { Bar } from "react-chartjs-2";
-Chart.register(...registerables);
+
 
 class StatsPage extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            ratingCounts: {}
 
-        }
-    }
     async fetchAllAlbums() {
         const baseUrl = "https://zjixv0m4di.execute-api.us-east-1.amazonaws.com/non-prod"
         const albumsPath = "/albums"
@@ -38,42 +32,17 @@ class StatsPage extends React.Component {
         }
     }
 
-    getRatingCounts() {
-        const ratingCounts = {};
-        this.props.albums.forEach(function (v) {
-            ratingCounts[v.Rating] = (ratingCounts[v.Rating] || 0) + 1;
-        })
-        return ratingCounts
-    }
+
 
     render() {
-        const options = {
-            responsive: false,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Ratings',
-                },
-            },
-        };
-        const labels = Object.keys(this.getRatingCounts(this.props.albums))
-        const data = {
-            labels,
-            datasets: [
-                {
-                    label: 'Count',
-                    data: Object.values(this.getRatingCounts(this.props.albums)),
-                    backgroundColor: 'rgba(0, 255, 132, 0.8)',
-                },
 
-            ],
-        };
         return (
             <Container fluid className="app" >
                 <Header />
-                <h1 className="total-review-count-label">Total Reviews: {this.props.albums.length}</h1>
-                <Bar options={options} data={data} />;
-
+                <div className="data-container">
+                    <RatingsHistogram albums={this.props.albums} />
+                    <ArtistsHistogram />
+                </div>
             </Container >)
     }
 }
