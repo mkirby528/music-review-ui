@@ -40,7 +40,7 @@ class ArtistsHistogram extends React.Component {
 
         return (
             < Container fluid className="stats-container" >
-                <h2 className="total-review-count-label">Total Reviews: {sortedCountsArray.length}</h2>
+                <h2 className="total-review-count-label">Total Artists Reviewed: {sortedCountsArray.length}</h2>
                 <Table>
                     <thead>
                         <tr>
