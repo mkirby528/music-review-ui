@@ -7,7 +7,7 @@ import { Container } from "react-bootstrap";
 import Header from "../../Components/Header"
 import { connect } from "react-redux";
 import RatingsHistogram from "../../Components/Stats/RatingsHistogram";
-import ArtistsHistogram from "../../Components/Stats/ArtistsHistogram";
+import ArtistsHistogram from "../../Components/Stats/ArtistsTable";
 import { addAlbums, updateSearchTerm, updateDateRange } from "../../Store/actions";
 
 
