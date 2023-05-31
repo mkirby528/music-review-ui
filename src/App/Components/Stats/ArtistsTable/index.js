@@ -15,13 +15,27 @@ class ArtistsHistogram extends React.Component {
 
         }
     }
-    getArtistCounts() {
-        const artistCounts = {};
+    getArtistCountsAndAverageRating() {
+        const artistCounts = [];
         this.props.albums.forEach(function (album) {
-
             album.Artists.forEach(artist => {
-                artistCounts[artist] = (artistCounts[artist] || 0) + 1;
+                let artistObject = artistCounts.find(artistObject => artistObject.Name === artist);
+                if (artistObject) {
+                    artistObject.Count += 1
+                    artistObject.RatingSum = artistObject.RatingSum + parseInt(album.Rating)
+                    return
+                } else {
+                    artistObject = {}
+                    artistObject.Name = artist
+                    artistObject.Count = 1
+                    artistObject.RatingSum = parseInt(album.Rating)
 
+                    artistCounts.push(artistObject)
+                }
+            })
+            artistCounts.forEach(artist => {
+                artist.AverageRating = artist.RatingSum / artist.Count
+                artist.RoundedAverageRating = Math.round(10 * artist.AverageRating) / 10;
             })
 
         })
@@ -29,18 +43,16 @@ class ArtistsHistogram extends React.Component {
     }
 
     render() {
-        const artistCount = this.getArtistCounts()
-        const artistCountArray = Object.entries(artistCount)
-        const sortedCountsArray = artistCountArray.sort((a, b) => {
-            console.log(a, b)
-            return b[1] - a[1]
+        const artistCount = this.getArtistCountsAndAverageRating()
+        const sortedCounts = artistCount.sort((a, b) => {
+            return b.Count - a.Count
         })
+        console.log(sortedCounts)
 
-        console.log(sortedCountsArray)
 
         return (
             < Container fluid className="stats-container" >
-                <h2 className="total-review-count-label">Total Artists Reviewed: {sortedCountsArray.length}</h2>
+                <h2 className="total-review-count-label">Total Artists Reviewed: {sortedCounts.length}</h2>
                 <Table>
                     <thead>
                         <tr>
@@ -48,18 +60,22 @@ class ArtistsHistogram extends React.Component {
 
                             <th>Artist</th>
                             <th>Count</th>
+                            <th>Average Rating</th>
 
                         </tr>
                     </thead>
+                    <tbody>
+                        {sortedCounts.map((artist, i) => {
+                            return (<tr key={artist.Name}>
+                                <td className="table-data">{i + 1}</td>
+                                <td className="table-data">{artist.Name}</td>
+                                <td className="table-data">{artist.Count}</td>
+                                <td className="table-data">{artist.RoundedAverageRating}</td>
 
-                    {sortedCountsArray.map((artist, i) => (
-                        <tr key={artist[0]}>
-                            <td className="table-data">{i + 1}</td>
-                            <td className="table-data">{artist[0]}</td>
-                            <td className="table-data">{artist[1]}</td>
-
-                        </tr>))
-                    }
+                            </tr>)
+                        })
+                        }
+                    </tbody>
 
                 </Table>
             </Container >)
