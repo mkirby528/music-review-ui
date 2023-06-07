@@ -47,7 +47,6 @@ class ArtistsHistogram extends React.Component {
         const sortedCounts = artistCount.sort((a, b) => {
             return b.Count - a.Count
         })
-        console.log(sortedCounts)
 
 
         return (
