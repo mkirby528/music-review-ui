@@ -58,6 +58,8 @@ class AddReviewPage extends React.Component {
                     <AddReviewForm back={this.back}
                         continues={this.continues} selectedAlbum={this.state.selectedAlbum} />
                 </Box >)
+            default:
+                return <div></div>
         }
     }
 }
