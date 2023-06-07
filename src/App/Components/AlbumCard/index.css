@@ -151,14 +151,15 @@
     border-radius: 15px;
 }
 
+
 .spotify-logo-link {
     display: flex;
-    height: 10%;
-    width: 10%;
+    height: 100%;
+    width: 100%;
 }
 
 .spotify-logo {
-    height: 10%;
+    height: 60%;
     margin: auto;
 }
 
