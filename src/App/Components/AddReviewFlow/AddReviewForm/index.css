@@ -1,0 +1,16 @@
+.form-array-input-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 5px;
+    padding: 5px;
+}
+
+.review-form-input-arry {
+    width: 80%;
+}
+
+
+.form-array-input-remove-icon {
+    width: 5%;
+}

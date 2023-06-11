@@ -3,7 +3,7 @@ import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { Input, Button, FormControl } from "@mui/joy";
-import { FormLabel, Row } from "react-bootstrap";
+import { FormLabel, Row, } from "react-bootstrap";
 import Switch, { switchClasses } from '@mui/joy/Switch';
 import { Redirect } from "react-router-dom";
 
@@ -11,7 +11,12 @@ import { Redirect } from "react-router-dom";
 class AddReviewForm extends React.Component {
     constructor(props) {
         super(props)
+        this.keyCount = 0;
         this.state = { "album": { ...this.props.selectedAlbum, "HaveVinyl": false, "Rating": 1 } }
+    }
+    getKey = () => {
+        console.log(this.keyCount + 1)
+        return this.keyCount++;
     }
     setChecked(value) {
         this.setState(prevState => {
@@ -34,9 +39,29 @@ class AddReviewForm extends React.Component {
         const value = event.target.value
         let fieldArray = this.state.album[fieldName]
         fieldArray[index] = value
+        console.log(fieldArray)
         this.setState(prevState => {
             let album = Object.assign({}, prevState.album);
             album[fieldName] = fieldArray;
+            return { album };
+        })
+    }
+    removeArrayElement = (key, index) => {
+        let fieldArray = this.state.album[key]
+        fieldArray = fieldArray.slice(0, index).concat(fieldArray.slice(index + 1))
+        console.log(fieldArray)
+        this.setState(prevState => {
+            let album = Object.assign({}, prevState.album);
+            album[key] = fieldArray;
+            return { album };
+        })
+    }
+    addArrayElement = (key) => {
+        let fieldArray = this.state.album[key]
+        fieldArray.push("")
+        this.setState(prevState => {
+            let album = Object.assign({}, prevState.album);
+            album[key] = fieldArray;
             return { album };
         })
     }
@@ -82,18 +107,26 @@ class AddReviewForm extends React.Component {
                         return (
                             <FormControl key={index} className="review-form-control">
                                 <FormLabel className="review-form-label">
-                                    {key} </FormLabel>
+                                    {key}
+                                    <i onClick={() => this.addArrayElement(key)} className="fa-solid fa-circle-plus"></i>
+                                </FormLabel>
 
                                 {this.state.album[key].map((value, index) => {
-                                    return (<FormControl key={index} className="review-form-control">
-                                        <Input
-                                            className="review-form-input"
-                                            name={key}
-                                            defaultValue={this.state.album[key][index]}
-                                            onChange={(event) => this.handleChangeArray(event, index)} // Update to call new function for array update
-                                            variant="soft"
-                                            required
-                                        /></FormControl>)
+                                    return (
+                                        <FormControl key={index} className="form-array-input-container">
+                                            <Row>
+                                                <Input
+                                                    className="review-form-input-arry"
+                                                    name={key}
+                                                    value={value}
+                                                    onChange={(event) => this.handleChangeArray(event, index)}
+                                                    variant="soft"
+                                                    required
+                                                />
+                                                <i onClick={() => this.removeArrayElement(key, index)} className="form-array-input-remove-icon icon-link fa-solid fa-circle-xmark"></i>
+                                            </Row>
+                                        </FormControl>
+                                    )
                                 })}
                             </FormControl>)
                     }
@@ -110,7 +143,7 @@ class AddReviewForm extends React.Component {
                                         <Input
                                             className="review-form-input"
                                             name={key}
-                                            defaultValue={this.state.album[key][obj]}
+                                            value={this.state.album[key][obj]}
                                             onChange={this.handleChange} // Update to call new function for object updates
                                             variant="soft"
                                             required
@@ -164,7 +197,7 @@ class AddReviewForm extends React.Component {
                     <Button className="review-form-submit-button"
                         type="submit">Submit</Button>
                 </FormControl>
-            </form>
+            </form >
         )
     }
 }
