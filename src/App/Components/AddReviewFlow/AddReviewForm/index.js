@@ -5,20 +5,29 @@ import { connect } from "react-redux";
 import { Input, Button, FormControl } from "@mui/joy";
 import { FormLabel, Row } from "react-bootstrap";
 import Switch, { switchClasses } from '@mui/joy/Switch';
+import { Redirect } from "react-router-dom";
 
 
 class AddReviewForm extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { ...this.props.selectedAlbum, "Rating": 1 }
+        this.state = { "album": { ...this.props.selectedAlbum, "HaveVinyl": false, "Rating": 1 } }
     }
     setChecked(value) {
-        this.setState({ "haveVinylChecked": value })
+        this.setState(prevState => {
+            let album = Object.assign({}, prevState.album);
+            album.HaveVinyl = value;
+            return { album };
+        })
     }
     handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
-        this.setState({ [name]: value })
+        this.setState(prevState => {
+            let album = Object.assign({}, prevState.album);
+            album[name] = value;
+            return { album };
+        })
     }
 
     isObject(val) {
@@ -28,10 +37,10 @@ class AddReviewForm extends React.Component {
 
     async formSubmitted(event) {
         event.preventDefault()
-        let album = this.state
+        let album = this.state.album
         console.log(album)
         album["Rating"] = Number(album["Rating"])
-        let response = await this.postAlbumReview(this.state)
+        let response = await this.postAlbumReview(album)
         if (response.status === 201) {
             this.setState({ redirectToHome: true })
         }
@@ -46,28 +55,30 @@ class AddReviewForm extends React.Component {
         return response
     }
     render() {
-        console.log(this.state)
+        if (this.state.redirectToHome) {
+            return <Redirect to="/" />
+        }
         return (
             <form className="add-review-form"
                 onSubmit={(event) => {
                     this.formSubmitted(event)
                 }}
             >
-                {Object.keys(this.state).filter(key => {
-                    return key !== "id" && key !== "ArtistsString" && key !== "Type"
+                {Object.keys(this.state.album).filter(key => {
+                    return key !== "id" && key !== "ArtistsString" && key !== "Type" && key !== "HaveVinyl"
                 }).map((key, index) => {
-                    if (Array.isArray(this.state[key])) {
+                    if (Array.isArray(this.state.album[key])) {
                         return (
                             <FormControl key={index} className="review-form-control">
                                 <FormLabel className="review-form-label">
                                     {key} </FormLabel>
 
-                                {this.state[key].map((value, index) => {
+                                {this.state.album[key].map((value, index) => {
                                     return (<FormControl key={index} className="review-form-control">
                                         <Input
                                             className="review-form-input"
                                             name={key}
-                                            defaultValue={this.state[key][index]}
+                                            defaultValue={this.state.album[key][index]}
                                             onChange={this.handleChange} // Update to call new function for array update
                                             variant="soft"
                                             required
@@ -75,12 +86,12 @@ class AddReviewForm extends React.Component {
                                 })}
                             </FormControl>)
                     }
-                    if (this.isObject(this.state[key])) {
+                    if (this.isObject(this.state.album[key])) {
                         return (<FormControl key={index} className="review-form-control">
                             <FormLabel className="review-form-label">
                                 {key} </FormLabel>
 
-                            {Object.keys(this.state[key]).map((obj, index) => {
+                            {Object.keys(this.state.album[key]).map((obj, index) => {
 
                                 return (
                                     <FormControl key={index} className="review-form-control">
@@ -88,7 +99,7 @@ class AddReviewForm extends React.Component {
                                         <Input
                                             className="review-form-input"
                                             name={key}
-                                            defaultValue={this.state[key][obj]}
+                                            defaultValue={this.state.album[key][obj]}
                                             onChange={this.handleChange} // Update to call new function for object updates
                                             variant="soft"
                                             required
@@ -104,7 +115,7 @@ class AddReviewForm extends React.Component {
                         <Input
                             className="review-form-input"
                             name={key}
-                            defaultValue={this.state[key]}
+                            defaultValue={this.state.album[key]}
                             onChange={this.handleChange}
                             variant="soft"
                             required
@@ -117,8 +128,8 @@ class AddReviewForm extends React.Component {
                             Have Viny?
                         </FormLabel>
                         <Switch
-                            color={this.state.haveVinylChecked ? 'success' : 'danger'}
-                            checked={this.state.haveVinylChecked}
+                            color={this.state.album.HaveVinyl ? 'success' : 'danger'}
+                            checked={this.state.album.HaveVinyl}
                             onChange={(event) => this.setChecked(event.target.checked)}
                             sx={{
                                 '--Switch-thumbSize': '32px',

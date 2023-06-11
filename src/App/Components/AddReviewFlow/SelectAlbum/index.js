@@ -28,7 +28,7 @@ class SelectAlbum extends React.Component {
                                     <Col
                                         className="result-card-column" xs={6}>
                                         <img
-                                            src={album.Images["lg"]}
+                                            src={album.CoverImage}
                                             loading="lazy"
                                             className="result-cover-image"
                                             alt=""></img>

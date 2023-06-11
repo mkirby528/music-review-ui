@@ -56,7 +56,7 @@ class AlbumCard extends React.Component {
                 <div className="card-front">
                     <div className="card-top">
                         <div className="card-top-column">
-                            <img className="album-cover-image" alt={`${this.state.album.Title} album cover`} src={this.state.album.Images.md} />
+                            <img className="album-cover-image" alt={`${this.state.album.Title} album cover`} src={this.state.album.CoverImage} />
                         </div>
                         <div className="card-top-column">
                             <div className="ratings-container">
