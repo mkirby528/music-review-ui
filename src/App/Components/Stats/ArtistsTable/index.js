@@ -7,7 +7,7 @@ import { Chart, registerables } from 'chart.js';
 import { Table } from "@mui/joy";
 Chart.register(...registerables);
 
-class ArtistsHistogram extends React.Component {
+class ArtistsTable extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -50,8 +50,7 @@ class ArtistsHistogram extends React.Component {
 
 
         return (
-            < Container fluid className="stats-container" >
-                <h2 className="total-review-count-label">Total Artists Reviewed: {sortedCounts.length}</h2>
+            < Container fluid className="artists-table-container" >
                 <Table>
                     <thead>
                         <tr>
@@ -90,4 +89,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, null)(ArtistsHistogram);
+export default connect(mapStateToProps, null)(ArtistsTable);

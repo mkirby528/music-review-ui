@@ -15,41 +15,57 @@ class RatingsHistogram extends React.Component {
 
         }
     }
-    getRatingCounts() {
+    getCounts() {
+        const field = this.props.field
         const ratingCounts = {};
-        this.props.albums.forEach(function (v) {
-            ratingCounts[v.Rating] = (ratingCounts[v.Rating] || 0) + 1;
+        this.props.albums.forEach(function (album) {
+            ratingCounts[album[field]] = (ratingCounts[album[field]] || 0) + 1;
         })
         return ratingCounts
     }
 
     render() {
+        const field = this.props.field
         const options = {
             responsive: true,
             plugins: {
                 title: {
                     display: true,
-                    text: 'Ratings',
+                    text: field,
+                    color: "white"
                 },
             },
+            scales: {
+                y: {
+                    ticks: {
+                        color: "white",
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: "white",
+                    }
+                }
+            }
+
+
         };
-        const labels = Object.keys(this.getRatingCounts(this.props.albums))
+        const labels = Object.keys(this.getCounts())
         const data = {
             labels,
             datasets: [
                 {
                     label: 'Count',
-                    data: Object.values(this.getRatingCounts(this.props.albums)),
-                    backgroundColor: 'rgba(0, 255, 132, 0.8)',
+                    data: Object.values(this.getCounts()),
+                    backgroundColor: this.props.color || 'lime',
+                    color: "white"
                 },
 
             ],
         };
         return (
             <Container fluid className="stats-container" >
-                <h2 className="total-review-count-label">Total Reviews: {this.props.albums.length}</h2>
                 <Bar options={options} data={data} />;
-
             </Container >)
     }
 }

@@ -4,12 +4,34 @@
 
 .data-container {
     height: 85%;
-    width: 100;
+    width: 100%;
     display: flex;
+    overflow: hidden;
+
+}
+
+.stats-page-col {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    overflow: auto;
 }
 
 .stats-container {
-    max-width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    max-width: 100%;
+    max-height: 40%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.artists-table-container {
+    max-width: 100%;
+    max-height: 100%;
     overflow: auto;
     text-align: center;
 }
