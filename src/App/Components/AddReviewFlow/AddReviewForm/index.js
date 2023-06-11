@@ -29,6 +29,17 @@ class AddReviewForm extends React.Component {
             return { album };
         })
     }
+    handleChangeArray = (event, index) => {
+        const fieldName = event.target.name
+        const value = event.target.value
+        let fieldArray = this.state.album[fieldName]
+        fieldArray[index] = value
+        this.setState(prevState => {
+            let album = Object.assign({}, prevState.album);
+            album[fieldName] = fieldArray;
+            return { album };
+        })
+    }
 
     isObject(val) {
         if (val === null) { return false; }
@@ -79,7 +90,7 @@ class AddReviewForm extends React.Component {
                                             className="review-form-input"
                                             name={key}
                                             defaultValue={this.state.album[key][index]}
-                                            onChange={this.handleChange} // Update to call new function for array update
+                                            onChange={(event) => this.handleChangeArray(event, index)} // Update to call new function for array update
                                             variant="soft"
                                             required
                                         /></FormControl>)
