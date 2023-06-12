@@ -18,7 +18,7 @@ class Header extends React.Component {
                         <i className="icon-link fa-solid fa-home"></i>
                     </Link>
                 </Col>
-                <Col className="filter-options-column" xs={9} md={10}>
+                <Col className="filter-options-column" xs={8} md={10}>
                     <SearchInput className="search-input" fuzzy onChange={this.props.updateSearchTerm} />
                     <Row className="filter-options-container">
                         <Col sm={12} lg={6} className="d-none d-md-block release-date-slider-column">
