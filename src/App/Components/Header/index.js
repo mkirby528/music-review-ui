@@ -12,19 +12,19 @@ class Header extends React.Component {
 
     render() {
         return (
-            <Row className="header">
+            <Row className="header" >
                 <Col className="home-button-column">
                     <Link to="/">
                         <i className="icon-link fa-solid fa-home"></i>
                     </Link>
                 </Col>
-                <Col className="filter-options-column" xs={10}>
+                <Col className="filter-options-column" xs={9} md={10}>
                     <SearchInput className="search-input" fuzzy onChange={this.props.updateSearchTerm} />
-                    <Row className="filter-options-container" xs={2}>
-                        <Col className="release-date-slider-column">
+                    <Row className="filter-options-container">
+                        <Col sm={12} lg={6} className="d-none d-md-block release-date-slider-column">
                             <ReleaseDateSlider></ReleaseDateSlider>
                         </Col>
-                        <Col className="sort-selection-column">
+                        <Col xsm={12} lg={6} className="sort-selection-column">
                             <SortSelction></SortSelction>
                         </Col>
                     </Row>

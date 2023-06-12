@@ -67,7 +67,7 @@ class CardGrid extends React.Component {
         filteredAlbums.sort(this.compareAlbums(this.props.filterValues.sortField, sortOrder))
         console.log(`${filteredAlbums.length} filtered albums`)
         return (
-            <Row xs={1} md={3} className="card-grid">
+            <Row xs={1} md={4} className="card-grid">
                 {filteredAlbums.map(album => (
                     < Col key={album.id} className="card-container" >
                         <AlbumCard album={album} />

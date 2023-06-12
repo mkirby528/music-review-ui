@@ -37,7 +37,7 @@ class StatsPage extends React.Component {
     render() {
 
         return (
-            <Container fluid className="app" >
+            <Container fluid className="app-page" >
                 <Header />
                 <Row className="data-container">
                     <Col className="stats-page-col" xs={12} md={6}>
