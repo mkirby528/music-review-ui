@@ -40,13 +40,13 @@ class StatsPage extends React.Component {
             <Container fluid className="app" >
                 <Header />
                 <div className="data-container">
-                    <Col className="stats-page-col" xs={6}>
+                    <Col className="stats-page-col" xs={12} md={6}>
                         <Histogram color="teal" field="Rating" albums={this.props.albums} />
                         <Histogram color="teal" field="ReleaseYear" albums={this.props.albums} />
                         <Histogram color="teal" field="HaveVinyl" albums={this.props.albums} />
 
                     </Col>
-                    <Col className="stats-page-col" xs={6}>
+                    <Col className="stats-page-col" xs={12} md={6}>
                         <ArtistsHistogram />
                     </Col>
                 </div >
