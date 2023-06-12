@@ -182,14 +182,15 @@
     position: absolute;
     color: white;
     position: absolute;
-    bottom: 5px;
-    right: 5px
+    bottom: 0px;
+    right: 0px
 }
 
 .record-icon {
     position: absolute;
-    bottom: 40px;
-    right: 5px;
+    bottom: 0;
+    font-size: 1.5em;
+    left: 0px;
     color: white;
 }
 
