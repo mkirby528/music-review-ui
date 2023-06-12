@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import Histogram from "../../Components/Stats/Histogram";
 import ArtistsHistogram from "../../Components/Stats/ArtistsTable";
 import { addAlbums, updateSearchTerm, updateDateRange } from "../../Store/actions";
-import { Col } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 
 class StatsPage extends React.Component {
 
@@ -39,7 +39,7 @@ class StatsPage extends React.Component {
         return (
             <Container fluid className="app" >
                 <Header />
-                <div className="data-container">
+                <Row className="data-container">
                     <Col className="stats-page-col" xs={12} md={6}>
                         <Histogram color="teal" field="Rating" albums={this.props.albums} />
                         <Histogram color="teal" field="ReleaseYear" albums={this.props.albums} />
@@ -49,7 +49,7 @@ class StatsPage extends React.Component {
                     <Col className="stats-page-col" xs={12} md={6}>
                         <ArtistsHistogram />
                     </Col>
-                </div >
+                </Row >
             </Container >)
     }
 }
