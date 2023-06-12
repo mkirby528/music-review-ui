@@ -1,0 +1,11 @@
+.album-full-view-container {
+    width: 50vw;
+    height: 50vh;
+    margin: auto;
+    background-color: #191919;
+    color: white;
+    padding: 5px;
+    font-family: monospace;
+    font-size: .9em;
+    overflow: auto;
+}
