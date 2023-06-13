@@ -6,18 +6,18 @@ import { Input, Button, FormControl } from "@mui/joy";
 import { FormLabel, Row, } from "react-bootstrap";
 import Switch, { switchClasses } from '@mui/joy/Switch';
 import { Redirect } from "react-router-dom";
+import CircularProgress from '@mui/joy/CircularProgress';
 
 
 class AddReviewForm extends React.Component {
     constructor(props) {
         super(props)
-        this.keyCount = 0;
-        this.state = { "album": { ...this.props.selectedAlbum, "HaveVinyl": false, "Rating": 1 } }
+        this.state = {
+            "submitLoading": false,
+            "album": { ...this.props.selectedAlbum, "HaveVinyl": false, "Rating": 1 }
+        }
     }
-    getKey = () => {
-        console.log(this.keyCount + 1)
-        return this.keyCount++;
-    }
+
     setChecked(value) {
         this.setState(prevState => {
             let album = Object.assign({}, prevState.album);
@@ -76,6 +76,7 @@ class AddReviewForm extends React.Component {
         let album = this.state.album
         console.log(album)
         album["Rating"] = Number(album["Rating"])
+        this.setState({ "submitLoading": true })
         let response = await this.postAlbumReview(album)
         if (response.status === 201) {
             this.setState({ redirectToHome: true })
@@ -91,113 +92,128 @@ class AddReviewForm extends React.Component {
         return response
     }
     render() {
+        console.log(this.state.submitLoading)
         if (this.state.redirectToHome) {
             return <Redirect to="/" />
         }
         return (
-            <form className="add-review-form"
-                onSubmit={(event) => {
-                    this.formSubmitted(event)
-                }}
-            >
-                {Object.keys(this.state.album).filter(key => {
-                    return key !== "id" && key !== "ArtistsString" && key !== "Type" && key !== "HaveVinyl"
-                }).map((key, index) => {
-                    if (Array.isArray(this.state.album[key])) {
-                        return (
-                            <FormControl key={index} className="review-form-control">
-                                <FormLabel className="review-form-label">
-                                    {key}
-                                    <i onClick={() => this.addArrayElement(key)} className="fa-solid fa-circle-plus"></i>
-                                </FormLabel>
 
-                                {this.state.album[key].map((value, index) => {
-                                    return (
-                                        <FormControl key={index} className="form-array-input-container">
-                                            <Row>
-                                                <Input
-                                                    className="review-form-input-arry"
-                                                    name={key}
-                                                    value={value}
-                                                    onChange={(event) => this.handleChangeArray(event, index)}
-                                                    variant="soft"
-                                                    required
-                                                />
-                                                <i onClick={() => this.removeArrayElement(key, index)} className="form-array-input-remove-icon icon-link fa-solid fa-circle-xmark"></i>
-                                            </Row>
-                                        </FormControl>
-                                    )
-                                })}
-                            </FormControl>)
-                    }
-                    if (this.isObject(this.state.album[key])) {
-                        return (<FormControl key={index} className="review-form-control">
-                            <FormLabel className="review-form-label">
-                                {key} </FormLabel>
+            <div className="add-review-form-container">
+                {this.state.submitLoading &&
+                    <div className="loading-container">
+                        <h1>
+                            Creating Review...
+                        </h1>
+                        <CircularProgress />
+                    </div>
+                }
+                {!this.state.submitLoading &&
 
-                            {Object.keys(this.state.album[key]).map((obj, index) => {
 
+                    <form className="add-review-form"
+                        onSubmit={(event) => {
+                            this.formSubmitted(event)
+                        }}
+                    >
+                        {Object.keys(this.state.album).filter(key => {
+                            return key !== "id" && key !== "ArtistsString" && key !== "Type" && key !== "HaveVinyl"
+                        }).map((key, index) => {
+                            if (Array.isArray(this.state.album[key])) {
                                 return (
                                     <FormControl key={index} className="review-form-control">
-                                        <FormLabel className="review-form-label">{obj}</FormLabel>
-                                        <Input
-                                            className="review-form-input"
-                                            name={key}
-                                            value={this.state.album[key][obj]}
-                                            onChange={this.handleChange} // Update to call new function for object updates
-                                            variant="soft"
-                                            required
-                                        /></FormControl>)
-                            })}
-                        </FormControl>)
+                                        <FormLabel className="review-form-label">
+                                            {key}
+                                            <i onClick={() => this.addArrayElement(key)} className="fa-solid fa-circle-plus"></i>
+                                        </FormLabel>
 
-                    }
-                    return (<FormControl key={index} className="review-form-control">
-                        <FormLabel className="review-form-label">
-                            {key}
-                        </FormLabel>
-                        <Input
-                            className="review-form-input"
-                            name={key}
-                            defaultValue={this.state.album[key]}
-                            onChange={this.handleChange}
-                            variant="soft"
-                            required
-                        />
-                    </FormControl>)
-                })}
-                <Row xs={1} sm={2}>
-                    <FormControl className="review-form-control">
-                        <FormLabel className="review-form-label text-centered">
-                            Have Viny?
-                        </FormLabel>
-                        <Switch
-                            color={this.state.album.HaveVinyl ? 'success' : 'danger'}
-                            checked={this.state.album.HaveVinyl}
-                            onChange={(event) => this.setChecked(event.target.checked)}
-                            sx={{
-                                '--Switch-thumbSize': '32px',
-                                '--Switch-trackWidth': '80px',
-                                '--Switch-trackHeight': '48px',
-                                '--Switch-trackBackground': '#EE5E52',
-                                '&:hover': {
-                                    '--Switch-trackBackground': '#EE5E52',
-                                },
-                                [`&.${switchClasses.checked}`]: {
-                                    '--Switch-trackBackground': '#5CB176',
-                                    '&:hover': {
-                                        '--Switch-trackBackground': '#5CB176',
-                                    },
-                                },
-                            }}
-                        />
-                    </FormControl>
-                </Row>
-                <FormControl className="review-form-control">
-                    <Button className="review-form-submit-button"
-                        type="submit">Submit</Button>
-                </FormControl>
-            </form >
+                                        {this.state.album[key].map((value, index) => {
+                                            return (
+                                                <FormControl key={index} className="form-array-input-container">
+                                                    <Row>
+                                                        <Input
+                                                            className="review-form-input-arry"
+                                                            name={key}
+                                                            value={value}
+                                                            onChange={(event) => this.handleChangeArray(event, index)}
+                                                            variant="soft"
+                                                            required
+                                                        />
+                                                        <i onClick={() => this.removeArrayElement(key, index)} className="form-array-input-remove-icon icon-link fa-solid fa-circle-xmark"></i>
+                                                    </Row>
+                                                </FormControl>
+                                            )
+                                        })}
+                                    </FormControl>)
+                            }
+                            if (this.isObject(this.state.album[key])) {
+                                return (<FormControl key={index} className="review-form-control">
+                                    <FormLabel className="review-form-label">
+                                        {key} </FormLabel>
+
+                                    {Object.keys(this.state.album[key]).map((obj, index) => {
+
+                                        return (
+                                            <FormControl key={index} className="review-form-control">
+                                                <FormLabel className="review-form-label">{obj}</FormLabel>
+                                                <Input
+                                                    className="review-form-input"
+                                                    name={key}
+                                                    value={this.state.album[key][obj]}
+                                                    onChange={this.handleChange} // Update to call new function for object updates
+                                                    variant="soft"
+                                                    required
+                                                /></FormControl>)
+                                    })}
+                                </FormControl>)
+
+                            }
+                            return (<FormControl key={index} className="review-form-control">
+                                <FormLabel className="review-form-label">
+                                    {key}
+                                </FormLabel>
+                                <Input
+                                    className="review-form-input"
+                                    name={key}
+                                    defaultValue={this.state.album[key]}
+                                    onChange={this.handleChange}
+                                    variant="soft"
+                                    required
+                                />
+                            </FormControl>)
+                        })}
+                        <Row xs={1} sm={2}>
+                            <FormControl className="review-form-control">
+                                <FormLabel className="review-form-label text-centered">
+                                    Have Viny?
+                                </FormLabel>
+                                <Switch
+                                    color={this.state.album.HaveVinyl ? 'success' : 'danger'}
+                                    checked={this.state.album.HaveVinyl}
+                                    onChange={(event) => this.setChecked(event.target.checked)}
+                                    sx={{
+                                        '--Switch-thumbSize': '32px',
+                                        '--Switch-trackWidth': '80px',
+                                        '--Switch-trackHeight': '48px',
+                                        '--Switch-trackBackground': '#EE5E52',
+                                        '&:hover': {
+                                            '--Switch-trackBackground': '#EE5E52',
+                                        },
+                                        [`&.${switchClasses.checked}`]: {
+                                            '--Switch-trackBackground': '#5CB176',
+                                            '&:hover': {
+                                                '--Switch-trackBackground': '#5CB176',
+                                            },
+                                        },
+                                    }}
+                                />
+                            </FormControl>
+                        </Row>
+                        <FormControl className="review-form-control">
+                            <Button className="review-form-submit-button"
+                                type="submit">Submit</Button>
+                        </FormControl>
+                    </form >}
+            </div>
         )
     }
 }

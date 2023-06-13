@@ -1,5 +1,7 @@
 .add-review-form {
-    width: 50%;
+    width: 60%;
+    height: 80%;
+    overflow: auto;
     padding: 20px;
     border-radius: 20px;
     margin: auto;
