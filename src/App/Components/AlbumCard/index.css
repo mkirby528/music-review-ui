@@ -1,3 +1,8 @@
+.album-card-container {
+    height: 100%;
+    width: 100%;
+}
+
 .album-card {
     margin: auto;
     height: 100%;
@@ -181,7 +186,6 @@
 .record-icon {
     position: absolute;
     bottom: 0;
-    font-size: 1.5em;
     left: 0px;
     color: white;
 }

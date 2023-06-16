@@ -55,17 +55,21 @@ class AlbumCard extends React.Component {
 
 
     }
-    renderTooltip = (props) => (
+    renderTitleTooltip = (props, field) => (
         <Tooltip id="button-tooltip" {...props}>
             {this.state.album.Title}
         </Tooltip>
     );
-
+    renderArtistTooltip = (props, field) => (
+        <Tooltip id="button-tooltip" {...props}>
+            {this.state.album.ArtistsString}
+        </Tooltip>
+    );
 
 
     render() {
         return (
-            <div className="album-card">
+            <div className="album-card-container">
                 <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal" containerClassName="album-card">
                     <div className="card-front">
                         <div className="card-top">
@@ -87,11 +91,17 @@ class AlbumCard extends React.Component {
                             <OverlayTrigger
                                 placement="top"
                                 delay={{ show: 250, hide: 400 }}
-                                overlay={this.renderTooltip}
+                                overlay={this.renderTitleTooltip}
                             >
                                 <h1 className="album-title-text">{`${this.state.album.Title}`} </h1>
                             </OverlayTrigger>
-                            <h2 className="album-title-text">{this.state.album.ArtistsString}</h2>
+                            <OverlayTrigger
+                                placement="top"
+                                delay={{ show: 250, hide: 400 }}
+                                overlay={this.renderArtistTooltip}
+                            >
+                                <h2 className="album-title-text">{this.state.album.ArtistsString}</h2>
+                            </OverlayTrigger>
                         </div>
                         <i onClick={this.toggleHaveVinyl} className={this.state.album.HaveVinyl ? 'fa-solid fa-record-vinyl record-icon record-icon-owned' : 'fa-solid fa-record-vinyl record-icon'}></i>
                         <i onClick={this.openModal} className="open-modal-icon fa-solid fa-maximize"></i>
