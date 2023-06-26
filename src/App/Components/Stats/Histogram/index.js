@@ -65,7 +65,7 @@ class RatingsHistogram extends React.Component {
         };
         return (
             <Container fluid className="stats-container" >
-                <Bar options={options} data={data} />;
+                <Bar options={options} data={data} />
             </Container >)
     }
 }
