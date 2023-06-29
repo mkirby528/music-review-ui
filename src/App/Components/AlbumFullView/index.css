@@ -1,6 +1,5 @@
 .album-full-view-container {
-    width: 50vw;
-    height: 50vh;
+
     margin: auto;
     background-color: #191919;
     color: white;
@@ -8,4 +7,19 @@
     font-family: monospace;
     font-size: .9em;
     overflow: auto;
+}
+
+@media (min-width: 767px) {
+    .album-full-view-container {
+        width: 60vw;
+        height: 60vh;
+    }
+}
+
+@media (max-width: 767px) {
+    .album-full-view-container {
+        border: 2px solid red;
+        width: 80vw;
+        height: 95vh;
+    }
 }
