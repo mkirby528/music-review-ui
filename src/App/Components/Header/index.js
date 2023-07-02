@@ -7,9 +7,9 @@ import { connect } from "react-redux";
 import { updateSearchTerm, updateDateRange } from "../../Store/actions";
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Menu from '@mui/joy/Menu';
-import MenuItem from '@mui/joy/MenuItem';
+
 import { AuthContext } from "../../Auth/authContext"
+import { Avatar } from "@mui/material";
 class Header extends React.Component {
     static contextType = AuthContext
 
@@ -41,9 +41,7 @@ class Header extends React.Component {
                 </Col>
                 <Col className="user-profile-column">
                     {this.context.user &&
-                        <h2>
-                            logged in
-                        </h2>
+                       <Avatar/>
                     }
                     
                 </Col>

@@ -3,7 +3,6 @@ import React from "react";
 
 import { connect } from "react-redux";
 import { updateSearchTerm, updateDateRange, updateSortField, updateSortOrder } from "../../../Store/actions";
-import { Select, Option } from "@mui/joy";
 
 class SortSelection extends React.Component {
     constructor(props) {
