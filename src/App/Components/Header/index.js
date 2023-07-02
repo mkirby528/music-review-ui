@@ -7,8 +7,11 @@ import { connect } from "react-redux";
 import { updateSearchTerm, updateDateRange } from "../../Store/actions";
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Menu from '@mui/joy/Menu';
+import MenuItem from '@mui/joy/MenuItem';
+import { AuthContext } from "../../Auth/authContext"
 class Header extends React.Component {
-
+    static contextType = AuthContext
 
     render() {
         return (
@@ -17,25 +20,32 @@ class Header extends React.Component {
                     <Link to="/">
                         <i className="icon-link fa-solid fa-home"></i>
                     </Link>
-                </Col>
-                <Col className="filter-options-column" xs={8} md={10}>
-                    <SearchInput className="search-input" fuzzy onChange={this.props.updateSearchTerm} />
-                    <Row className="filter-options-container">
-                        <Col sm={12} lg={6} className="d-none d-md-block release-date-slider-column">
-                            <ReleaseDateSlider></ReleaseDateSlider>
-                        </Col>
-                        <Col xsm={12} lg={6} className="sort-selection-column">
-                            <SortSelction></SortSelction>
-                        </Col>
-                    </Row>
-                </Col>
-                <Col className="add-review-column">
                     <Link to="/add">
                         <i className="icon-link fa-solid fa-circle-plus"></i>
                     </Link>
                     <Link to="/stats">
                         <i className="icon-link fa-solid fa-chart-line"> </i>
                     </Link>
+
+                </Col>
+                <Col className="filter-options-column" xs={8} md={10}>
+                    <SearchInput className="search-input" fuzzy onChange={this.props.updateSearchTerm} />
+                    <Row className="filter-options-container">
+                        <Col className="release-date-slider-column">
+                            <ReleaseDateSlider></ReleaseDateSlider>
+                        </Col>
+                        <Col className="sort-selection-column">
+                            <SortSelction></SortSelction>
+                        </Col>
+                    </Row>
+                </Col>
+                <Col className="user-profile-column">
+                    {this.context.user &&
+                        <h2>
+                            logged in
+                        </h2>
+                    }
+                    
                 </Col>
             </Row>
         )

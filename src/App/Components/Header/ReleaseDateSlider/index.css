@@ -1,6 +1,6 @@
 .release-year-container {
     color: white;
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,5 +9,5 @@
 }
 
 #release-year-slider {
-    width: 80%;
+    width: 100%;
 }

@@ -1,9 +1,9 @@
 import "./index.css"
 import React from "react";
-import Radio from "@mui/joy/Radio";
-import RadioGroup from "@mui/joy/RadioGroup";
+
 import { connect } from "react-redux";
 import { updateSearchTerm, updateDateRange, updateSortField, updateSortOrder } from "../../../Store/actions";
+import { Select, Option } from "@mui/joy";
 
 class SortSelection extends React.Component {
     constructor(props) {
@@ -12,6 +12,7 @@ class SortSelection extends React.Component {
         this.updateSortOrder = this.updateSortOrder.bind(this)
     }
     updateSortField(event) {
+       
         this.props.updateSortField(event.target.value)
     }
     updateSortOrder(event) {
@@ -27,44 +28,21 @@ class SortSelection extends React.Component {
                 <h6 className="sort-label">
                     Sort
                 </h6>
-                <div className="sort-buttons-container">
-                    <RadioGroup
-                        orientation="horizontal"
-                        name="sortField"
-                        className="sort-radio-group"
-                        onChange={this.updateSortField}
-                        value={this.props.filterValues.sortField}
-
-                    >
+                <div className="sort-select-container">
+                    <select className="sort-select" defaultValue={"DateListened"} onChange={this.updateSortField}>
                         {['Rating', 'Title', 'Artists', 'DateListened', 'ReleaseDate'].map((item) => (
-                            <Radio
+                            <option
                                 key={item}
                                 value={item}
                                 label={item}
-                                disableIcon
-                                className="sort-radio-button"
-                                size="md"
-                                variant="solid"
-                                slotProps={{
-                                    action: ({ checked }) => ({
-                                        sx: {
-                                            ...(checked && {
-                                                bgcolor: '#6DAEDB',
-                                                boxShadow: 'sm',
-                                                '&:hover': {
-                                                    bgcolor: '#6DAEDB',
-                                                },
-                                            }),
-                                        },
-                                    }),
-                                }}
-
-                            />
+                                className="option-text"
+                            >{item}</option>
                         ))}
-                    </RadioGroup>
-                    <i onClick={this.updateSortOrder} className={this.props.filterValues.sortOrder === "asc" ? "fa-solid fa-arrow-up" : "fa-solid fa-arrow-down"}></i>
-                </div>
 
+                    </select>
+                    <i onClick={this.updateSortOrder} className={this.props.filterValues.sortOrder === "asc" ? "fa-solid fa-arrow-up" : "fa-solid fa-arrow-down"}></i>
+
+                </div>
             </div>
         )
     }
