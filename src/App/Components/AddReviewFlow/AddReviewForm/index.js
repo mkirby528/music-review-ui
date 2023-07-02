@@ -7,9 +7,11 @@ import { FormLabel, Row, } from "react-bootstrap";
 import Switch, { switchClasses } from '@mui/joy/Switch';
 import { Redirect } from "react-router-dom";
 import CircularProgress from '@mui/joy/CircularProgress';
+import { AuthContext } from "../../../Auth/authContext";
 
 
 class AddReviewForm extends React.Component {
+    static contextType = AuthContext
     constructor(props) {
         super(props)
         this.state = {
@@ -39,7 +41,6 @@ class AddReviewForm extends React.Component {
         const value = event.target.value
         let fieldArray = this.state.album[fieldName]
         fieldArray[index] = value
-        console.log(fieldArray)
         this.setState(prevState => {
             let album = Object.assign({}, prevState.album);
             album[fieldName] = fieldArray;
@@ -49,7 +50,6 @@ class AddReviewForm extends React.Component {
     removeArrayElement = (key, index) => {
         let fieldArray = this.state.album[key]
         fieldArray = fieldArray.slice(0, index).concat(fieldArray.slice(index + 1))
-        console.log(fieldArray)
         this.setState(prevState => {
             let album = Object.assign({}, prevState.album);
             album[key] = fieldArray;
@@ -74,25 +74,27 @@ class AddReviewForm extends React.Component {
     async formSubmitted(event) {
         event.preventDefault()
         let album = this.state.album
-        console.log(album)
         album["Rating"] = Number(album["Rating"])
         this.setState({ "submitLoading": true })
         let response = await this.postAlbumReview(album)
         if (response.status === 201) {
             this.setState({ redirectToHome: true })
         }
-        console.log(response)
     }
     async postAlbumReview(album) {
+        const sessionInfo = await this.context.getSession()
+        const authToken = sessionInfo.idToken.jwtToken
         const baseUrl = "https://zjixv0m4di.execute-api.us-east-1.amazonaws.com/non-prod"
         const albumsPath = "/albums"
+        const headers = {
+            "Authorization": authToken
+        }
         const requestURL = baseUrl + albumsPath
 
-        const response = await axios.post(requestURL, album)
+        const response = await axios.post(requestURL, album,{headers})
         return response
     }
     render() {
-        console.log(this.state.submitLoading)
         if (this.state.redirectToHome) {
             return <Redirect to="/" />
         }

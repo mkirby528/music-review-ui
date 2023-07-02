@@ -6,8 +6,13 @@ import { createFilter } from "react-search-input";
 import AlbumCard from "../AlbumCard";
 import { connect } from "react-redux";
 import { addAlbums } from "../../Store/actions";
+import { AuthContext } from "../../Auth/authContext";
 class CardGrid extends React.Component {
+    static contextType = AuthContext
     async fetchAllAlbums() {
+        const sessionInfo = await this.context.getSession();
+        const idToken = sessionInfo.idToken.jwtToken;
+        console.log(idToken)
         const baseUrl = "https://zjixv0m4di.execute-api.us-east-1.amazonaws.com/non-prod"
         const albumsPath = "/albums"
         const requestURL = baseUrl + albumsPath
@@ -16,7 +21,8 @@ class CardGrid extends React.Component {
             sort_order: "desc"
         };
         const headers = {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization" : `Bearer ${idToken}`
         }
 
         const response = await axios.get(requestURL, { headers: headers, params: params })
