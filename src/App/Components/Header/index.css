@@ -103,7 +103,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: flex-end;
  
 }
@@ -112,4 +112,19 @@
     color: white;
     font-size: 30px;
     text-align: center;
+}
+
+.avatar{
+  vertical-align: middle;
+  height:  75%;
+  border-radius: 50%;
+}
+.avatar-container{
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }

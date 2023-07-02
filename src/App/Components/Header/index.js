@@ -7,13 +7,13 @@ import { connect } from "react-redux";
 import { updateSearchTerm, updateDateRange } from "../../Store/actions";
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 import { AuthContext } from "../../Auth/authContext"
-import { Avatar } from "@mui/material";
+import Dropdown from 'react-bootstrap/Dropdown';
 class Header extends React.Component {
     static contextType = AuthContext
 
     render() {
+        console.log()
         return (
             <Row className="header" >
                 <Col className="home-button-column">
@@ -41,9 +41,13 @@ class Header extends React.Component {
                 </Col>
                 <Col className="user-profile-column">
                     {this.context.user &&
-                       <Avatar/>
+                        <div className="avatar-container">
+                            <img src="avatar.png" alt="Avatar" className="avatar"></img>
+                         
+
+                        </div>
                     }
-                    
+
                 </Col>
             </Row>
         )
