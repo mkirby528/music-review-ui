@@ -45,7 +45,7 @@ class StatsPage extends React.Component {
                         <Histogram color="DeepSkyBlue" field="Rating" albums={this.props.albums} />
                         <Histogram color="Orange" field="ReleaseYear" albums={this.props.albums} />
                         <Histogram color="SpringGreen" field="HaveVinyl" albums={this.props.albums} />
-                        <Histogram color="SpringGreen" field="NumberOfTracks" albums={this.props.albums} />
+                        <Histogram color="LightSlateBlue" field="NumberOfTracks" albums={this.props.albums} />
 
                       
 
