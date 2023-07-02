@@ -1,42 +1,34 @@
 import React from "react";
-import { signUp, confirmSignUp } from "../../../Auth/authHelper"
 import { Container } from "react-bootstrap";
 import { Input, Button, FormControl } from "@mui/joy";
 import { FormLabel, } from "react-bootstrap";
 import "./index.css"
+import {AuthContext} from '../../../Auth/authContext'
 
-class Register extends React.Component {
+
+
+class Login extends React.Component {
+    static contextType = AuthContext
     constructor(props) {
         super(props)
         this.state = {
             username: "",
-            email: "",
             password: "",
-            verifyProcess: false,
-            otp: ""
+            user: {}
 
         }
     }
-    handleSubmit = async (event) => {
-        event.preventDefault()
-        try {
-            await signUp(this.state.username, this.state.email, this.state.password)
-            this.setState({verifyProcess:true});
+    
 
-        } catch (err) {
-            console.log(err)
-        }
-    }
-    handleOTPSubmit = async (e) => {
+    handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const verify_response = await confirmSignUp(this.state.username, this.state.otp)
-            console.log(verify_response)
-            window.location = "/"
+          await this.context.signIn(this.state.username, this.state.password)
+          window.location = "/"
         } catch (err) {
-            console.log(err)
+          console.log(err.message)
         }
-    }
+      }
 
 
     handleInputChange = (event) => {
@@ -52,10 +44,11 @@ class Register extends React.Component {
 
 
     render() {
+        if (this.context.user) {
+          window.location = "/"
+        }
         return (
             <Container fluid className="form-container">
-                {this.state.verifyProcess === false ? (
-
                     <form className="add-review-form"
                         onSubmit={(event) => {
                             this.handleSubmit(event)
@@ -74,19 +67,7 @@ class Register extends React.Component {
 
                             />
                         </FormControl>
-                        <FormControl className="review-form-control">
-                            <FormLabel className="review-form-label">
-                                Email
-                            </FormLabel>
-                            <Input
-                                className="review-form-input"
-                                variant="soft"
-                                name="email"
-                                required
-                                onChange={this.handleInputChange}
-
-                            />
-                        </FormControl>
+                      
                         <FormControl className="review-form-control">
                             <FormLabel className="review-form-label">
                                 Password
@@ -105,35 +86,10 @@ class Register extends React.Component {
                             <Button className="review-form-submit-button"
                                 type="submit">Submit</Button>
                         </FormControl>
-                    </form>) :
-
-                    <form className="add-review-form"
-                        onSubmit={(event) => {
-                            this.handleOTPSubmit(event)
-                        }}
-
-                    >
-                        <FormControl className="review-form-control">
-                            <FormLabel className="review-form-label">
-                                OTP
-                            </FormLabel>
-                            <Input
-                                className="review-form-input"
-                                variant="soft"
-                                required
-                                name="otp"
-                                onChange={this.handleInputChange}
-
-                            />
-                        </FormControl>
-                        <FormControl className="review-form-control">
-                            <Button className="review-form-submit-button"
-                                type="submit">Submit</Button>
-                        </FormControl>
-                    </form>}
+                    </form>
             </Container >
         )
     }
 }
 
-export default Register;
+export default Login;

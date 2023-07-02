@@ -4,7 +4,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
 import Register from "../../../Components/Auth/Register";
-class LoginPage extends React.Component {
+class RegisterPagePage extends React.Component {
     render() {
 
         return (
@@ -15,4 +15,4 @@ class LoginPage extends React.Component {
 }
 
 
-export default connect(null, null)(LoginPage);
+export default connect(null, null)(RegisterPagePage);

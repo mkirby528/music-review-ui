@@ -6,8 +6,13 @@ import CardGrid from "../../Components/CardGrid";
 import Header from "../../Components/Header"
 import { connect } from "react-redux";
 import { addAlbums, updateSearchTerm, updateDateRange } from "../../Store/actions";
-
+import { AuthContext } from "../../Auth/authContext";
 class AlbumGridPage extends React.Component {
+    static contextType = AuthContext
+    async componentDidMount() {
+        // const session = (await this.context.getSession())
+      
+    }
     render() {
         return (
             <Container fluid className="app-page">

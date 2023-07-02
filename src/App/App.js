@@ -6,6 +6,7 @@ import StatsPage from "./Pages/Stats"
 import AddReviewPage from "./Pages/AddReview"
 import LoginPage from "./Pages/Auth/Login"
 import RegisterPage from "./Pages/Auth/Register"
+import { AuthProvider } from "././Auth/authContext"
 
 import { connect } from "react-redux";
 import { addAlbums, updateSearchTerm, updateDateRange } from "./Store/actions";
@@ -18,6 +19,7 @@ import {
 class App extends React.Component {
     render() {
         return (
+            <AuthProvider>
             <Router>
                 <Switch>
                     <Route path="/stats">
@@ -46,6 +48,8 @@ class App extends React.Component {
                 </Switch>
 
             </Router>
+            </AuthProvider>
+
         )
     }
 }
