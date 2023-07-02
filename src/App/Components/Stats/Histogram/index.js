@@ -28,6 +28,7 @@ class RatingsHistogram extends React.Component {
         const field = this.props.field
         const options = {
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 title: {
                     display: true,
@@ -64,8 +65,8 @@ class RatingsHistogram extends React.Component {
             ],
         };
         return (
-            <Container fluid className="stats-container" >
-                <Bar options={options} data={data} />
+            <Container fluid className="histogram-container" >
+                <Bar className="histogram" options={options} data={data} width={"100%"} height={"100%"}/>
             </Container >)
     }
 }

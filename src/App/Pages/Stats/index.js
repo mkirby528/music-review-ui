@@ -7,7 +7,7 @@ import { Container } from "react-bootstrap";
 import Header from "../../Components/Header"
 import { connect } from "react-redux";
 import Histogram from "../../Components/Stats/Histogram";
-import ArtistsHistogram from "../../Components/Stats/ArtistsTable";
+import ArtistsTable from "../../Components/Stats/ArtistsTable";
 import { addAlbums, updateSearchTerm, updateDateRange } from "../../Store/actions";
 import { Col, Row } from "react-bootstrap";
 
@@ -41,13 +41,18 @@ class StatsPage extends React.Component {
                 <Header />
                 <Row className="data-container">
                     <Col className="stats-page-col" xs={12} md={6}>
-                        <Histogram color="teal" field="Rating" albums={this.props.albums} />
-                        <Histogram color="teal" field="ReleaseYear" albums={this.props.albums} />
-                        <Histogram color="teal" field="HaveVinyl" albums={this.props.albums} />
+                        <h2 className="album-count-text">{this.props.albums.length} total albums reviewed</h2>
+                        <Histogram color="DeepSkyBlue" field="Rating" albums={this.props.albums} />
+                        <Histogram color="Orange" field="ReleaseYear" albums={this.props.albums} />
+                        <Histogram color="SpringGreen" field="HaveVinyl" albums={this.props.albums} />
+                        <Histogram color="SpringGreen" field="NumberOfTracks" albums={this.props.albums} />
+
+                      
+
 
                     </Col>
                     <Col className="stats-page-col" xs={12} md={6}>
-                        <ArtistsHistogram />
+                        <ArtistsTable />
                     </Col>
                 </Row >
             </Container >)
