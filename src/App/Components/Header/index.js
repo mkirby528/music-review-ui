@@ -8,7 +8,6 @@ import { updateSearchTerm, updateDateRange } from "../../Store/actions";
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Auth/authContext"
-import Dropdown from 'react-bootstrap/Dropdown';
 class Header extends React.Component {
     static contextType = AuthContext
 
