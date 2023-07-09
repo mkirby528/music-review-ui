@@ -15,8 +15,7 @@ class Header extends React.Component {
     render() {
         return (
             <Row className="header" >
-               
-                <Col className="filter-options-column" xs={8} md={10}>
+                <Col xs={9} md={11} className="filter-options-column">
                     <SearchInput className="search-input" fuzzy onChange={this.props.updateSearchTerm} />
                     <Row className="filter-options-container">
                         <Col className="release-date-slider-column">
@@ -27,10 +26,10 @@ class Header extends React.Component {
                         </Col>
                     </Row>
                 </Col>
-                <Col className="user-profile-column">
+                <Col xs={3} md={1} className="user-profile-column">
                     {this.context.user &&
                         <div className="avatar-container">
-                            <AvatarDropdownMenu/>
+                            <AvatarDropdownMenu />
                         </div>
                     }
 

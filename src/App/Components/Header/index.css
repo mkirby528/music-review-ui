@@ -90,17 +90,9 @@
     align-items: center;
 }
 
-.home-button-column {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
-}
+
 .user-profile-column{
     height: 100%;
-    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
