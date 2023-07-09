@@ -1,0 +1,23 @@
+.dropdown-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+ 
+}
+
+.avatar-image {
+    vertical-align: middle;
+    height: 90%;
+    border-radius: 50%;
+}
+
+.icon-link {
+    color: black;
+    text-align: center;
+}
+
+.menu-link{
+    text-decoration: none;
+    color: black;
+    margin: 2px;
+}

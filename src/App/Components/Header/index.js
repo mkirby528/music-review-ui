@@ -8,25 +8,15 @@ import { updateSearchTerm, updateDateRange } from "../../Store/actions";
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Auth/authContext"
+import AvatarDropdownMenu from "./AvartarDropdownMenu";
+
 class Header extends React.Component {
     static contextType = AuthContext
 
     render() {
-        console.log()
         return (
             <Row className="header" >
-                <Col className="home-button-column">
-                    <Link to="/">
-                        <i className="icon-link fa-solid fa-home"></i>
-                    </Link>
-                    <Link to="/add">
-                        <i className="icon-link fa-solid fa-circle-plus"></i>
-                    </Link>
-                    <Link to="/stats">
-                        <i className="icon-link fa-solid fa-chart-line"> </i>
-                    </Link>
-
-                </Col>
+               
                 <Col className="filter-options-column" xs={8} md={10}>
                     <SearchInput className="search-input" fuzzy onChange={this.props.updateSearchTerm} />
                     <Row className="filter-options-container">
@@ -41,9 +31,7 @@ class Header extends React.Component {
                 <Col className="user-profile-column">
                     {this.context.user &&
                         <div className="avatar-container">
-                            <img src="avatar.png" alt="Avatar" className="avatar"></img>
-                         
-
+                            <AvatarDropdownMenu/>
                         </div>
                     }
 
