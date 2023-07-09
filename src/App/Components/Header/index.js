@@ -11,7 +11,7 @@ import AvatarDropdownMenu from "./AvartarDropdownMenu";
 
 class Header extends React.Component {
     static contextType = AuthContext
-
+    
     render() {
         return (
             <Row className="header" >

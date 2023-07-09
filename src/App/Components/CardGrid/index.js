@@ -59,6 +59,12 @@ class CardGrid extends React.Component {
 
 
     render() {
+       if (this.context.isLoading) {
+        return <></>
+      }
+        if (!this.context.user){
+            window.location="/login"
+        }
         const minYear = String(this.props.filterValues.minYear)
         const maxYear = String(this.props.filterValues.maxYear)
         const filterByYear = (album) => {

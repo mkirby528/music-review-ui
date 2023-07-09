@@ -1,11 +1,14 @@
-import * as React from 'react';
+import React, { useContext } from 'react'
 import Button from '@mui/joy/Button';
 import Menu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
 import { Link } from "react-router-dom";
 import "./index.css"
+import { AuthContext } from '../../../Auth/authContext';
 
 export default function AvatarDropdownMenu() {
+  
+  const user = useContext(AuthContext)
   const buttonRef = React.useRef(null);
   const [open, setOpen] = React.useState(false);
 
@@ -52,7 +55,7 @@ export default function AvatarDropdownMenu() {
           <i className="icon-link fa-solid fa-chart-line"></i>
           Stats
         </MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={user.signOut}>Logout</MenuItem>
       </Menu>
 
     </div>
