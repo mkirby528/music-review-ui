@@ -6,7 +6,6 @@ import SortSelction from "./SortSelction";
 import { connect } from "react-redux";
 import { updateSearchTerm, updateDateRange } from "../../Store/actions";
 import { Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { AuthContext } from "../../Auth/authContext"
 import AvatarDropdownMenu from "./AvartarDropdownMenu";
 
