@@ -39,21 +39,19 @@ export default function AvatarDropdownMenu() {
         onClose={handleClose}
         aria-labelledby="basic-demo-button"
       >
-        <MenuItem onClick={handleClose}> <Link className="menu-link" to="/">
+        <MenuItem className="menu-link" component={Link} to={'/'} onClick={handleClose}>
           <i className="icon-link fa-solid fa-home"></i>
           Home
+        </MenuItem>
 
-        </Link></MenuItem>
-        <MenuItem onClick={handleClose}> <Link className="menu-link" to="/stats">
-          <i className="icon-link fa-solid fa-chart-line"></i>
-          Stats
-
-        </Link></MenuItem>
-        <MenuItem onClick={handleClose}> <Link className="menu-link" to="/add">
+        <MenuItem className="menu-link" component={Link} to={'/add'} onClick={handleClose}>
           <i className="icon-link fa-solid fa-circle-plus"></i>
           Add Review
-
-        </Link></MenuItem>
+        </MenuItem>
+        <MenuItem className="menu-link" component={Link} to={'/stats'} onClick={handleClose}>
+          <i className="icon-link fa-solid fa-chart-line"></i>
+          Stats
+        </MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
 
