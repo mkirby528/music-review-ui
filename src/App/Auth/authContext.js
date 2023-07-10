@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react"
 import * as auth from "../Auth/authHelper"
-
+import axios from "axios"
 const AuthContext = createContext()
 
 function AuthProvider({ children }) {
@@ -10,6 +10,12 @@ function AuthProvider({ children }) {
   const getCurrentUser = async () => {
     try {
       const user = await auth.getCurrentUser()
+      
+      // const baseUrl = "https://zjixv0m4di.execute-api.us-east-1.amazonaws.com/non-prod"
+      // const userInfoPath = `<todo>`
+      // const requestURL = baseUrl + userInfoPath
+      // const response = await axios.get(requestURL)
+      // user.userData = response.data
       setUser(user)
     } catch (err) {
       // not logged in
@@ -34,6 +40,7 @@ function AuthProvider({ children }) {
   }
   const getSession = async () => {
     const session = await auth.getSession()
+  
     return session
   }
 

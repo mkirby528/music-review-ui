@@ -44,7 +44,6 @@ class AlbumCard extends React.Component {
                 });
                 if (response.status === 200) {
                     const newAlbumObject = { ...this.state.album, "HaveVinyl": newValue }
-                    console.log(newAlbumObject)
                     this.setState({ album: newAlbumObject })
                 }
 

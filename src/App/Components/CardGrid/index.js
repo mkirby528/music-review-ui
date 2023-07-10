@@ -12,7 +12,6 @@ class CardGrid extends React.Component {
     async fetchAllAlbums() {
         const sessionInfo = await this.context.getSession();
         const idToken = sessionInfo.idToken.jwtToken;
-        console.log(idToken)
         const baseUrl = "https://zjixv0m4di.execute-api.us-east-1.amazonaws.com/non-prod"
         const albumsPath = "/albums"
         const requestURL = baseUrl + albumsPath
@@ -22,7 +21,7 @@ class CardGrid extends React.Component {
         };
         const headers = {
             "Content-Type": "application/json",
-            "Authorization" : `Bearer ${idToken}`
+            "Authorization": `Bearer ${idToken}`
         }
 
         const response = await axios.get(requestURL, { headers: headers, params: params })
@@ -59,11 +58,11 @@ class CardGrid extends React.Component {
 
 
     render() {
-       if (this.context.isLoading) {
-        return <></>
-      }
-        if (!this.context.user){
-            window.location="/login"
+        if (this.context.isLoading) {
+            return <></>
+        }
+        if (!this.context.user) {
+            window.location = "/login"
         }
         const minYear = String(this.props.filterValues.minYear)
         const maxYear = String(this.props.filterValues.maxYear)
