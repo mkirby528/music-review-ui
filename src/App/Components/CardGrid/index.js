@@ -58,6 +58,7 @@ class CardGrid extends React.Component {
 
 
     render() {
+        console.log(this.context.user)
         if (this.context.isLoading) {
             return <></>
         }

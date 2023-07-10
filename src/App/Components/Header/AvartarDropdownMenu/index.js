@@ -8,14 +8,13 @@ import { AuthContext } from '../../../Auth/authContext';
 
 export default function AvatarDropdownMenu() {
   
-  const user = useContext(AuthContext)
+  const context = useContext(AuthContext)
   const buttonRef = React.useRef(null);
   const [open, setOpen] = React.useState(false);
-
+    
   const handleClose = () => {
     setOpen(false);
   };
-
   return (
     <div className='dropdown-container'>
 
@@ -31,7 +30,7 @@ export default function AvatarDropdownMenu() {
           setOpen(!open);
         }}
       >
-        <img src="avatar.png" className='avatar-image' alt="avatar" />
+        <img src={context.user.userData.picture} className='avatar-image' alt="avatar" />
 
       </Button>
 
@@ -55,7 +54,7 @@ export default function AvatarDropdownMenu() {
           <i className="icon-link fa-solid fa-chart-line"></i>
           Stats
         </MenuItem>
-        <MenuItem onClick={user.signOut}>Logout</MenuItem>
+        <MenuItem onClick={context.signOut}>Logout</MenuItem>
       </Menu>
 
     </div>
