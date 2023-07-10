@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react"
 import * as auth from "../Auth/authHelper"
-import axios from "axios"
+// import axios from "axios"
 const AuthContext = createContext()
 
 function AuthProvider({ children }) {
