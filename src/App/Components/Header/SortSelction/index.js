@@ -28,7 +28,7 @@ class SortSelection extends React.Component {
                     Sort
                 </h6>
                 <div className="sort-select-container">
-                    <select className="sort-select" defaultValue={"DateListened"} onChange={this.updateSortField}>
+                    <select className="sort-select" defaultValue={"Rating"} onChange={this.updateSortField}>
                         {['Rating', 'Title', 'Artists', 'DateListened', 'ReleaseDate'].map((item) => (
                             <option
                                 key={item}

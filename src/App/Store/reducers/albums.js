@@ -6,7 +6,7 @@ const initialState = {
         searchTerm: '',
         minYear: '1960',
         maxYear: '2023',
-        sortField: "DateListened",
+        sortField: "Rating",
         sortOrder: "desc"
     },
     isLoading: true,
