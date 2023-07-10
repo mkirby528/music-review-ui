@@ -20,34 +20,16 @@ class App extends React.Component {
     render() {
         return (
             <AuthProvider>
-            <Router>
-                <Switch>
-                    <Route path="/stats">
-                        <StatsPage />
-                    </Route>
-                </Switch>
-                <Switch>
-                    <Route path="/add">
-                        <AddReviewPage />
-                    </Route>
-                </Switch>
-                <Switch>
-                    <Route path="/login">
-                        <LoginPage />
-                    </Route>
-                </Switch>
-                <Switch>
-                    <Route exact path="/register">
-                        <RegisterPage />
-                    </Route>
-                </Switch>
-                <Switch>
-                    <Route exact path="/">
-                        <AlbumGridPage />
-                    </Route>
-                </Switch>
+                <Router>
+                    <Switch>
+                        <Route path="/stats" component={StatsPage} />
+                        <Route path="/add" component={AddReviewPage} />
+                        <Route path="/login" component={LoginPage} />
+                        <Route exact path="/register" component={RegisterPage} />
+                        <Route exact path="/" component={AlbumGridPage} />
+                    </Switch>
 
-            </Router>
+                </Router>
             </AuthProvider>
 
         )
