@@ -5,7 +5,7 @@ const initialState = {
     filterValues: {
         searchTerm: '',
         minYear: '1960',
-        maxYear: '2023',
+        maxYear: new Date().getFullYear(),
         sortField: "Rating",
         sortOrder: "desc"
     },
