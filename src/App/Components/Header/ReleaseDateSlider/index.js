@@ -22,8 +22,8 @@ class ReleaseDateSlider extends React.Component {
                 <Slider
                     id="release-year-slider"
                     min={1965}
-                    max={2023}
-                    defaultValue={[1965, 2023]}
+                    max={new Date().getFullYear()}
+                    defaultValue={[1965, new Date().getFullYear()]}
                     valueLabelDisplay="on"
                     onChange={this.releaseDateRangeUpdated}
                     sx={{
